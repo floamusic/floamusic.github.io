@@ -327,7 +327,7 @@ td.name .mark { width: 18px; height: 3px; border-radius: 2px; }
 td .sub { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-low); }
 
 .link-rows { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 0 28px; margin-top: 18px; }
-.link-row { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
+.link-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line-soft); }
 .link-row .k { font: 12px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-low); }
 
 footer { background: var(--floor); border-top: 1px solid var(--line-soft); padding-block: 28px 40px; }
