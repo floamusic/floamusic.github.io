@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fløa — FLOATING and KONSOLL</title>
+<meta name="description" content="Instruments by Fløa: FLOATING, a capture-first memory instrument, and KONSOLL, a four-module multi-FX that moves with the track. Audio Unit and VST3.">
+<meta name="theme-color" content="#111312">
+<link rel="stylesheet" href="assets/css/site.css">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fløa — FLOATING and KONSOLL">
+<meta property="og:description" content="Two instruments by Fløa. Audio Unit and VST3.">
+<meta property="og:image" content="assets/img/konsoll.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+
+<a class="skip" href="#instruments">Skip to the instruments</a>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Fløa, home">FLØA</a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#instruments">Instruments</a>
+      <a href="#konsoll">KONSOLL</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Fløa · audio instruments</p>
+      <h1>Two instruments, made by ear.</h1>
+      <p class="lede">FLOATING keeps hold of what you just played. KONSOLL runs your sound through four modules that move with the track. Both are Audio Unit and VST3 plug-ins, built and tuned by one person.</p>
+    </div>
+  </section>
+
+  <!-- ============================================================ CHOOSER -->
+  <section id="instruments">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">01</span>Choose an instrument</p>
+
+      <div class="chooser">
+
+        <article class="instrument floating" aria-labelledby="fl-name">
+          <div class="head">
+            <span class="wordmark" id="fl-name">FLOATING</span>
+            <span class="kind">Memory instrument</span>
+          </div>
+          <img class="shot"
+               src="assets/img/floating.jpg"
+               srcset="assets/img/floating.jpg 1920w, assets/img/floating@2x.jpg 2560w"
+               sizes="(max-width: 1120px) 100vw, 540px"
+               width="1920" height="1200"
+               alt="The FLOATING interface: a held Memory drawn across the top, the HELD button lit orange, and Memory Mode, Rate, Window, Shape and Mix knobs below.">
+          <p class="what">Capture a recent moment, shape how it is remembered, place it into atmosphere. Tape, Stretch and Choir change how the phrase sounds; the original stays untouched.</p>
+          <ul class="tags" aria-label="FLOATING at a glance">
+            <li class="hot">Beta · <span data-floating-version>v0.4.0</span></li>
+            <li>AU · VST3</li>
+            <li>macOS · Windows</li>
+          </ul>
+          <div class="actions">
+            <a class="btn primary" href="https://floamusic.github.io/floating-site/#beta">Get the beta</a>
+            <a class="btn" href="https://floamusic.github.io/floating-site/">About FLOATING</a>
+          </div>
+        </article>
+
+        <article class="instrument konsoll" aria-labelledby="ko-name">
+          <div class="head">
+            <img class="wordmark" id="ko-name" src="assets/img/konsoll-wordmark.svg" width="150" height="26" alt="KONSOLL">
+            <span class="kind">Multi-FX instrument</span>
+          </div>
+          <img class="shot"
+               src="assets/img/konsoll.jpg"
+               srcset="assets/img/konsoll.jpg 1920w, assets/img/konsoll@2x.jpg 2560w"
+               sizes="(max-width: 1120px) 100vw, 540px"
+               width="1920" height="1209"
+               alt="The KONSOLL interface playing the Backwards Halo preset: four modules, HEAT, SWAY, AIR and GRAIN, each with a coloured field and two knobs, above the Trace, Hold and Master sections.">
+          <p class="what">Four effect modules, HEAT, SWAY, AIR and GRAIN, each playing one of five effects. Trace loops your knob movements in time with the host, Hold loops a moment of audio, and Scenes morph between sounds.</p>
+          <ul class="tags" aria-label="KONSOLL at a glance">
+            <li class="hot">Beta · v0.9.0 · soon</li>
+            <li>AU · VST3</li>
+            <li>macOS · Apple Silicon</li>
+          </ul>
+          <div class="actions">
+            <span class="btn soon" role="link" aria-disabled="true">Download <span class="pill">Soon</span></span>
+            <a class="btn" href="#konsoll">About KONSOLL</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ KONSOLL -->
+  <section id="konsoll">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">02</span>KONSOLL</p>
+      <div class="split">
+        <div class="text">
+          <h2>Four modules that move with the track</h2>
+          <p>Each module is one card with one effect at a time: a main control, AMOUNT for how much you hear, and a second page for the finer controls. Put them in any order, or wire them as two paths, centre and sides, or a feedback loop.</p>
+          <p>Everything can move on its own. Trace records the knobs you turn and loops them over one, two or four bars. Hold records audio and loops it. A sidechain from another track can move any control.</p>
+        </div>
+        <figure>
+          <img class="figure-shot" src="assets/img/konsoll-bypass.jpg" width="1280" height="806" loading="lazy"
+               alt="KONSOLL playing the Rhythm Morph preset: Drive, Tremolo and Filter lit, the bypassed AIR module covered in a soft mist.">
+          <figcaption>Rhythm Morph · a bypassed module mists over instead of going dark</figcaption>
+        </figure>
+      </div>
+
+      <div class="modules" aria-label="The four modules">
+        <div class="module" style="--c: var(--heat)">
+          <h3><span class="n">01</span>Heat</h3>
+          <p>Drive and colour.</p>
+          <p class="fx">Drive · Fuzz · Warm · Wail · Bloom</p>
+        </div>
+        <div class="module" style="--c: var(--sway)">
+          <h3><span class="n">02</span>Sway</h3>
+          <p>Movement and pitch.</p>
+          <p class="fx">Twin · Vibrato · Tremolo · Phaser · Shift</p>
+        </div>
+        <div class="module" style="--c: var(--air)">
+          <h3><span class="n">03</span>Air</h3>
+          <p>Echoes and space.</p>
+          <p class="fx">Delay · Reverb · Reverse · Spool · Splice</p>
+        </div>
+        <div class="module" style="--c: var(--grain)">
+          <h3><span class="n">04</span>Grain</h3>
+          <p>Filter, tape and texture.</p>
+          <p class="fx">Filter · Tape · Warp · Press · Static</p>
+        </div>
+      </div>
+
+      <ul class="features">
+        <li><b>Trace</b><span>Loops your knob movements over 1, 2 or 4 bars, locked to the host tempo.</span></li>
+        <li><b>Hold</b><span>Hold to record a moment of audio, release to loop it, before or after the effects.</span></li>
+        <li><b>Scenes &amp; Evolve</b><span>Four stored sounds, and a morph between two of them by hand or over bars of the song.</span></li>
+        <li><b>Routing &amp; sidechain</b><span>Chain, two paths, centre and sides, or a feedback loop; another track can move any control.</span></li>
+        <li><b>51 factory presets</b><span>Loudness matched, so they differ by character, not level. Tuned by ear in blind tests.</span></li>
+        <li><b>Guard</b><span>Keeps the output under its ceiling and shows when it acts.</span></li>
+      </ul>
+
+      <div class="soon-panel">
+        <div class="row"><span class="soon-tag">SOON</span><h3 style="margin:0">The first public beta, v0.9.0</h3></div>
+        <p>One installer for Audio Unit and VST3, for Apple Silicon Macs on macOS 11 or later. Like FLOATING it will be free and unsigned, with an install guide for the one Gatekeeper prompt. A Windows VST3 comes later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== DOWNLOADS -->
+  <section id="downloads">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">03</span>Downloads</p>
+      <div class="text"><p>Every download is free, with no account and no key. The builds are unsigned betas; each one has an install guide.</p></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Instrument</th><th scope="col">macOS · Apple Silicon</th><th scope="col">Windows · x64</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="name">FLOATING</td>
+              <td><a class="state ok" href="https://floamusic.github.io/floating-site/#beta">Available</a><span class="sub">AU + VST3 installer · <span data-floating-version>v0.4.0</span></span></td>
+              <td><a class="state ok" href="https://floamusic.github.io/floating-site/#beta">Available</a><span class="sub">VST3 zip · <span data-floating-version>v0.4.0</span></span></td>
+            </tr>
+            <tr>
+              <td class="name">KONSOLL</td>
+              <td><span class="state soon">Soon</span><span class="sub">AU + VST3 installer · v0.9.0</span></td>
+              <td><span class="state later">Later</span><span class="sub">VST3</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">04</span>Support and contact</p>
+      <div class="text"><p>Both instruments are made by one person. Bug reports, confusion and “this should work differently” are equally welcome; support goes straight into the time this takes.</p></div>
+      <div class="link-rows">
+        <div class="link-row"><span class="k">Ko-fi</span><a href="https://ko-fi.com/floamusic" rel="noopener">ko-fi.com/floamusic</a></div>
+        <div class="link-row"><span class="k">Boosty</span><a href="https://boosty.to/floamusic/donate" rel="noopener">boosty.to/floamusic</a></div>
+        <div class="link-row"><span class="k">Instagram</span><a href="https://instagram.com/floamusic" rel="noopener">@floamusic</a></div>
+        <div class="link-row"><span class="k">Telegram</span><a href="https://t.me/floamusic" rel="noopener">@floamusic</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Fløa · FLOATING · KONSOLL</span>
+    <span>Fonts: <a href="assets/fonts/OFL-GeistMono.txt">Geist Mono</a> and <a href="assets/fonts/OFL-ShareTechMono.txt">Share Tech Mono</a>, SIL Open Font License</span>
+  </div>
+</footer>
+
+<script>
+/* FLOATING's current version, read from its site's latest release. The markup already carries
+   a correct fallback, so a blocked or rate-limited request leaves the page as it was. */
+(function () {
+  if (!window.fetch) return;
+  fetch('https://api.github.com/repos/floamusic/floating-site/releases/latest', { headers: { Accept: 'application/vnd.github+json' } })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (release) {
+      if (!release || !/^v\d+\.\d+\.\d+/.test(release.tag_name || '')) return;
+      document.querySelectorAll('[data-floating-version]').forEach(function (el) { el.textContent = release.tag_name; });
+    })
+    .catch(function () {});
+})();
+</script>
+</body>
+</html>
