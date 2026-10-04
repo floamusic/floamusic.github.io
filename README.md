@@ -5,9 +5,9 @@ Live (once published): <https://floamusic.github.io/>
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The showcase: two equal instrument cards (whole card opens the instrument's site); hover or focus shows that instrument's summary below (both are shown on touch screens); downloads table; support and contact |
-| `assets/css/site.css` | Single stylesheet. The stage behind the cards is where the worlds meet: FLOATING's black and ember on one side, KONSOLL's light stone and module colours on the other, graphite between; colour pools drift slowly and the border (`--split`) leans toward the instrument you point at. Cards and the summary are drawn in their own instrument's palette; downloads and contact sit on a graphite floor |
-| `assets/fonts/` | Geist Mono and Share Tech Mono, SIL OFL, licences included |
+| `index.html` | The showcase: two equal instrument cards (whole card opens the instrument's site). The page opens on FLOATING. With a pointer, hover or focus picks an instrument: its summary shows below and the stage turns to its world (the choice stays). On phones, touch screens and windows up to 960px the cards swipe sideways, each with its own summary, and a pager names them; the stage follows the swipe. Downloads table; support and contact |
+| `assets/css/site.css` | Single stylesheet. Behind the cards, the two worlds lie side by side on one strip twice the stage's width: FLOATING's black and ember, graphite between, KONSOLL's light stone and module colours. In FLOATING's world KONSOLL's light shows at the right edge; choosing KONSOLL slides the strip across (`--p`, a transform only, so the gradient is painted once) and the hero copy takes the dark ink. Pools drift on wide screens with a pointer and stay still on phones, where blur and blend are left out too. Cards and summaries are drawn in their own instrument's palette; downloads and contact sit on a graphite floor |
+| `assets/fonts/` | Geist Mono and Share Tech Mono as WOFF2 (TTF kept as fallback), SIL OFL, licences included |
 | `assets/img/` | Interface renders: FLOATING from `floating-site`, KONSOLL from `Konsoll_DSPTests --render-promo <file> [preset]` (2x, footer cropped so no version is pictured) |
 
 Static HTML and CSS, no build step, nothing from a CDN. One call goes to `api.github.com` for FLOATING's latest release tag; the markup carries the fallback.

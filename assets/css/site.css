@@ -1,26 +1,24 @@
 /* Fløa — showcase stylesheet.
    A stage where the two instruments' worlds meet: FLOATING's black and ember (its kDark palette)
    on one side, KONSOLL's light stone and four module colours (Soft Strata) on the other, joined
-   by the graphite of KONSOLL's performance panel. Colour pools drift slowly, the way light moves
-   in KONSOLL's fields; pointing at an instrument leans the border toward its world. Each card
-   and summary is drawn in its own instrument's palette. Below the stage, downloads and contact
-   sit on a graphite floor.
+   by the graphite of KONSOLL's performance panel, laid side by side on one wide strip. The page
+   opens in FLOATING's world with KONSOLL's light at the right edge; choosing KONSOLL slides the
+   strip across (a transform only, so the gradient is painted once). Colour pools drift slowly on
+   screens with a pointer and stay still on phones. Each card and summary is drawn in its own
+   instrument's palette. Below the stage, downloads and contact sit on a graphite floor.
    Geist Mono is both plug-ins' UI voice; Share Tech Mono appears only in the FLOATING name.
    Fonts are self-hosted (SIL OFL, licences beside them); nothing loads from a CDN. */
 
 @font-face {
   font-family: "Geist Mono";
-  src: url("../fonts/GeistMono-Regular.ttf") format("truetype");
+  src: url("../fonts/GeistMono-Regular.woff2") format("woff2"), url("../fonts/GeistMono-Regular.ttf") format("truetype");
   font-weight: 400; font-style: normal; font-display: swap;
 }
 @font-face {
   font-family: "ShareTechMono";
-  src: url("../fonts/ShareTechMono-Regular.ttf") format("truetype");
+  src: url("../fonts/ShareTechMono-Regular.woff2") format("woff2"), url("../fonts/ShareTechMono-Regular.ttf") format("truetype");
   font-weight: 400; font-style: normal; font-display: swap;
 }
-
-/* The border between the worlds, animatable where @property is supported. */
-@property --split { syntax: "<percentage>"; inherits: true; initial-value: 54%; }
 
 :root {
   color-scheme: dark;
@@ -99,28 +97,53 @@ a:hover { text-decoration-color: currentColor; }
 }
 
 /* ---------- stage and backdrop ---------- */
-.stage { position: relative; isolation: isolate; overflow: hidden; padding-bottom: clamp(56px, 8vw, 104px); --split: 54%; transition: --split 1.1s var(--ease); }
-.stage[data-lean="floating"] { --split: 76%; }
-.stage[data-lean="konsoll"] { --split: 30%; }
-.backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+/* The strip is twice the stage's width with the border between the worlds at its middle. --s is
+   where that border sits across the stage (0 = left edge, 1 = right edge): --s0 in FLOATING's
+   world, --s1 in KONSOLL's, and --p (0..1) travels between them. In FLOATING's world the border
+   sits just inside the right edge, so KONSOLL's light and colour show there and invite a look. */
+.stage { position: relative; isolation: isolate; overflow: hidden; padding-bottom: clamp(56px, 8vw, 104px); }
+.backdrop { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.world {
+  position: absolute; top: 0; bottom: 0; left: 0; width: 200%;
+  --p: 0; --s0: .8; --s1: -.06;
+  transform: translate3d(calc((var(--s0) + (var(--s1) - var(--s0)) * var(--p) - 1) * 50%), 0, 0);
+  will-change: transform;
+  transition: transform 1.1s var(--ease);
+}
+.stage[data-world="konsoll"] .world { --p: 1; }
 .field {
   position: absolute; inset: 0;
-  background: linear-gradient(100deg,
+  background: linear-gradient(var(--tilt, 98deg),
     var(--fl-bg) 0%,
-    #0a0a0c calc(var(--split) - 34%),
-    #1d2221 calc(var(--split) - 12%),
-    var(--ko-perf) calc(var(--split) - 2%),
-    #8f9a94 calc(var(--split) + 8%),
-    #cfcdc5 calc(var(--split) + 20%),
+    #0a0a0c 36%,
+    #1d2221 44%,
+    var(--ko-perf) 49%,
+    #8f9a94 53%,
+    #cfcdc5 58%,
     var(--ko-surface) 100%);
 }
-.pool { position: absolute; border-radius: 50%; will-change: transform; }
-.pool.ember { width: 62vmax; height: 62vmax; left: -22vmax; top: 18%; background: radial-gradient(closest-side, rgba(255, 90, 44, .30), rgba(255, 90, 44, .10) 45%, transparent 72%); animation: drift-a 34s var(--ease) infinite alternate; }
-.pool.ember-low { width: 40vmax; height: 40vmax; left: 8%; bottom: -16vmax; background: radial-gradient(closest-side, rgba(141, 77, 55, .38), transparent 70%); animation: drift-b 41s ease-in-out infinite alternate; }
-.pool.heat { width: 34vmax; height: 34vmax; right: 18%; top: -8vmax; background: radial-gradient(closest-side, rgba(207, 121, 78, .42), transparent 70%); animation: drift-b 29s ease-in-out infinite alternate; }
-.pool.sway { width: 38vmax; height: 38vmax; right: -10vmax; top: 10%; background: radial-gradient(closest-side, rgba(69, 132, 177, .40), transparent 70%); animation: drift-a 37s ease-in-out infinite alternate-reverse; }
-.pool.air { width: 44vmax; height: 44vmax; left: 38%; top: 38%; background: radial-gradient(closest-side, rgba(104, 165, 142, .38), transparent 70%); animation: drift-c 31s ease-in-out infinite alternate; }
-.pool.grain { width: 36vmax; height: 36vmax; right: 4%; bottom: -10vmax; background: radial-gradient(closest-side, rgba(146, 128, 187, .40), transparent 70%); animation: drift-c 43s ease-in-out infinite alternate-reverse; }
+/* Pools are placed in strip coordinates: FLOATING's embers left of the middle, KONSOLL's module
+   colours right of it, so each world carries its own light when the strip slides. */
+.pool { position: absolute; border-radius: 50%; }
+.pool.ember { width: 62vmax; height: 62vmax; left: calc(26% - 31vmax); top: 18%; background: radial-gradient(closest-side, rgba(255, 90, 44, .30), rgba(255, 90, 44, .10) 45%, transparent 72%); }
+.pool.ember-low { width: 40vmax; height: 40vmax; left: calc(40% - 20vmax); bottom: -16vmax; background: radial-gradient(closest-side, rgba(141, 77, 55, .38), transparent 70%); }
+.pool.heat { width: 34vmax; height: 34vmax; left: calc(56% - 17vmax); top: -8vmax; background: radial-gradient(closest-side, rgba(207, 121, 78, .42), transparent 70%); }
+.pool.sway { width: 38vmax; height: 38vmax; left: calc(78% - 19vmax); top: 10%; background: radial-gradient(closest-side, rgba(69, 132, 177, .40), transparent 70%); }
+.pool.air { width: 44vmax; height: 44vmax; left: calc(64% - 22vmax); top: 38%; background: radial-gradient(closest-side, rgba(104, 165, 142, .38), transparent 70%); }
+.pool.grain { width: 36vmax; height: 36vmax; left: calc(86% - 18vmax); bottom: -10vmax; background: radial-gradient(closest-side, rgba(146, 128, 187, .40), transparent 70%); }
+/* Phones only: KONSOLL's stone light and FLOATING's ink, each at the edge of the other world,
+   level with the cards. */
+.pool.stone { display: none; background: radial-gradient(closest-side, rgba(222, 221, 214, .62), rgba(222, 221, 214, .2) 55%, transparent 76%); }
+.pool.ink { display: none; background: radial-gradient(closest-side, rgba(5, 5, 6, .7), transparent 72%); }
+@media (hover: hover) and (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  .pool { will-change: transform; }
+  .pool.ember { animation: drift-a 34s var(--ease) infinite alternate; }
+  .pool.ember-low { animation: drift-b 41s ease-in-out infinite alternate; }
+  .pool.heat { animation: drift-b 29s ease-in-out infinite alternate; }
+  .pool.sway { animation: drift-a 37s ease-in-out infinite alternate-reverse; }
+  .pool.air { animation: drift-c 31s ease-in-out infinite alternate; }
+  .pool.grain { animation: drift-c 43s ease-in-out infinite alternate-reverse; }
+}
 @keyframes drift-a { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(6vmax, -4vmax, 0) scale(1.12); } }
 @keyframes drift-b { from { transform: translate3d(0, 0, 0) scale(1.05); } to { transform: translate3d(-5vmax, 5vmax, 0) scale(.94); } }
 @keyframes drift-c { from { transform: translate3d(0, 0, 0) scale(.96); } to { transform: translate3d(-7vmax, -3vmax, 0) scale(1.1); } }
@@ -129,13 +152,22 @@ a:hover { text-decoration-color: currentColor; }
 /* The stage settles into the graphite floor. */
 .settle { position: absolute; left: 0; right: 0; bottom: 0; height: 34%; background: linear-gradient(to bottom, rgba(16, 18, 17, 0), var(--floor)); }
 
-/* ---------- hero ---------- */
+/* ---------- hero: the copy takes the ink of the world it stands in ---------- */
 .hero { padding-block: clamp(64px, 11vw, 148px) clamp(36px, 5vw, 60px); }
 h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em; margin: 0 0 24px; max-width: 17ch; text-wrap: balance; color: #f3f2ec; }
 .lede { font-size: clamp(17px, 1.9vw, 19px); color: #b7bdb8; max-width: 46ch; margin: 0; }
+.hero h1, .hero .lede { transition: color .5s ease .3s; }
+.stage[data-world="konsoll"] .hero h1 { color: var(--ko-ink); }
+.stage[data-world="konsoll"] .hero .lede { color: #46524f; }
+.how-swipe { display: none; }
 
 /* ---------- instrument cards ---------- */
-.chooser { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+/* Wide screens with a pointer: the two cards side by side and one summary under both, in the
+   chosen instrument's world. Both summaries share the cell, so switching never shifts the page. */
+.chooser { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2.4vw, 28px); }
+.slide { display: contents; }
+.slide.floating .instrument { grid-area: 1 / 1; }
+.slide.konsoll .instrument { grid-area: 1 / 2; }
 .instrument {
   position: relative; display: grid; gap: 16px; align-content: start; min-width: 0;
   padding: clamp(18px, 2.6vw, 26px); border-radius: 16px; text-decoration: none;
@@ -169,16 +201,15 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .instrument.konsoll:hover, .instrument.konsoll:focus-visible, .instrument.konsoll.is-picked { border-color: rgba(56, 126, 123, .6); box-shadow: 0 34px 70px -28px rgba(48, 59, 61, .65), 0 0 0 1px rgba(56, 126, 123, .2); }
 .instrument.konsoll:focus-visible { outline-color: var(--ko-teal); }
 
-/* ---------- the summary under the cards takes the chosen instrument's world ---------- */
-.preview { margin-top: clamp(16px, 2.4vw, 28px); border-radius: 16px; min-height: 236px; position: relative; overflow: hidden; background: rgba(16, 18, 17, .62); border: 1px solid rgba(255, 255, 255, .08); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: background-color .5s var(--ease), border-color .5s var(--ease); }
-.preview-empty { display: grid; place-content: center; text-align: center; gap: 10px; min-height: 236px; padding: 24px; color: #b7bdb8; font: 12px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
-.preview-empty .keys { color: #8d968f; }
-.preview.has-pick .preview-empty { display: none; }
-.preview.pick-floating { background: var(--fl-plate); border-color: var(--fl-line); }
-.preview.pick-konsoll { background: var(--ko-plate); border-color: #c9c7bf; }
-.info { display: none; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px 40px; padding: clamp(22px, 3vw, 32px); }
-.info.is-on { display: grid; animation: rise .6s var(--ease); }
-@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+/* ---------- summaries, each drawn in its instrument's world ---------- */
+.info {
+  grid-area: 2 / 1 / 3 / 3; position: relative; overflow: hidden; border-radius: 16px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px 40px; align-content: start;
+  padding: clamp(22px, 3vw, 32px);
+  visibility: hidden; opacity: 0; transform: translateY(6px);
+  transition: opacity .45s var(--ease), transform .6s var(--ease), visibility 0s linear .45s;
+}
+.info.is-on { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; }
 .info::before { content: ""; position: absolute; left: 18px; right: 18px; top: 0; height: 2px; border-radius: 2px; background: var(--rule); }
 .info h3 { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 12px; }
 .info p { margin: 0; }
@@ -193,14 +224,14 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .info .go { margin-top: 18px; display: inline-flex; font: 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 .state-inline { font: 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; padding: 5px 7px; border-radius: 5px; }
 
-.info.floating { --rule: var(--fl-accent); color: var(--fl-ink); }
+.info.floating { --rule: var(--fl-accent); color: var(--fl-ink); background: var(--fl-plate); border: 1px solid var(--fl-line); }
 .info.floating h3, .info.floating dt { color: #8e9096; }
 .info.floating p, .info.floating li, .info.floating dd { color: var(--fl-muted); }
 .info.floating .flow li { border-color: var(--fl-line); }
 .info.floating b, .info.floating .go { color: var(--fl-ink); }
 .info.floating .state-inline { background: rgba(255, 90, 44, .16); color: #ff8a66; }
 
-.info.konsoll { --rule: var(--konsoll-rule); color: var(--ko-ink); }
+.info.konsoll { --rule: var(--konsoll-rule); color: var(--ko-ink); background: var(--ko-plate); border: 1px solid #c9c7bf; }
 .info.konsoll h3, .info.konsoll dt { color: var(--ko-muted); }
 .info.konsoll p, .info.konsoll li, .info.konsoll dd { color: #46524f; }
 .info.konsoll .flow li { border-color: var(--ko-line); background: #faf9f5; }
@@ -208,22 +239,61 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .info.konsoll .go { text-decoration-color: rgba(48, 59, 61, .35); }
 .info.konsoll .state-inline { background: #e0ebe6; color: var(--ko-teal); }
 
-/* Touch screens have no hover: both summaries show, each in its own world. */
-@media (hover: none) {
-  .preview { background: none; border: 0; min-height: 0; display: grid; gap: 16px; -webkit-backdrop-filter: none; backdrop-filter: none; }
-  .preview-empty { display: none; }
-  .info { display: grid; position: relative; border-radius: 16px; overflow: hidden; }
-  .info.floating { background: var(--fl-plate); border: 1px solid var(--fl-line); }
-  .info.konsoll { background: var(--ko-plate); border: 1px solid #c9c7bf; }
-}
+/* ---------- pager: only where the cards swipe ---------- */
+.pager { display: none; align-items: center; gap: 14px; margin: 0 0 16px; }
+.pager button { appearance: none; background: none; border: 0; padding: 10px 0; cursor: pointer; font: 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #8d968f; transition: color .3s ease; }
+.pager button[aria-current="true"] { color: #f3f2ec; }
+.pager-track { position: relative; flex: 1; height: 2px; border-radius: 2px; background: rgba(236, 235, 228, .16); overflow: hidden; transition: background-color .4s ease; }
+.pager-thumb { --p: 0; position: absolute; left: 0; top: 0; bottom: 0; width: 34%; border-radius: 2px; background: var(--fl-accent); transform: translate3d(calc(var(--p) * 194.1%), 0, 0); transition: background-color .4s ease; }
+.stage[data-world="konsoll"] .pager button { color: var(--ko-muted); }
+.stage[data-world="konsoll"] .pager button[aria-current="true"] { color: var(--ko-ink); }
+.stage[data-world="konsoll"] .pager-track { background: rgba(48, 59, 61, .18); }
+.stage[data-world="konsoll"] .pager-thumb { background: var(--ko-teal); }
 
-/* On a single column the worlds meet top to bottom, in the order of the cards. */
-@media (max-width: 960px) {
-  .field {
-    background: linear-gradient(180deg,
-      var(--fl-bg) 0%, #0a0a0c 30%, #1d2221 44%, var(--ko-perf) 52%, #8f9a94 60%, #cfcdc5 70%, var(--ko-surface) 100%);
+/* ---------- phones and touch screens: the instruments swipe sideways ----------
+   Each card carries its own summary; the next card shows at the edge. The world follows the
+   swipe directly, so the strip's own transition is off. Drifting pools, the grain blend and
+   backdrop blurs are left out here: the backdrop is painted once and only slides. */
+@media (max-width: 960px), (hover: none) {
+  /* The border waits just past the right edge, so the hero and pager copy stay on dark; the
+     invitation is the light and colour leaking in beside the next card. Pools are sized to the
+     phone and set level with the cards. */
+  .world { --s0: .97; --s1: -.06; transition: none; }
+  .pool.stone, .pool.ink { display: block; }
+  .pool.ember { width: 120vw; height: 120vw; left: calc(30% - 60vw); top: -10vw; }
+  .pool.ember-low { width: 90vw; height: 90vw; left: calc(36% - 45vw); top: 700px; bottom: auto; }
+  .pool.ink { width: 90vw; height: 90vw; left: calc(44% - 45vw); top: 380px; }
+  .pool.stone { width: 90vw; height: 90vw; left: calc(56% - 45vw); top: 380px; }
+  .pool.heat { width: 80vw; height: 80vw; left: calc(58% - 40vw); top: 320px; }
+  .pool.sway { width: 90vw; height: 90vw; left: calc(62% - 45vw); top: 600px; }
+  .pool.air { width: 110vw; height: 110vw; left: calc(70% - 55vw); top: 180px; }
+  .pool.grain { width: 90vw; height: 90vw; left: calc(80% - 45vw); bottom: -10vw; }
+  .field { --tilt: 90deg; }
+  .grain-noise { mix-blend-mode: normal; opacity: .045; }
+  .topbar { background: rgba(8, 9, 9, .94); -webkit-backdrop-filter: none; backdrop-filter: none; }
+  .hero h1, .hero .lede { transition: color .3s ease; }
+  .how-point { display: none; }
+  .how-swipe { display: inline; }
+  .pager { display: flex; }
+
+  .chooser {
+    display: flex; gap: 14px; align-items: stretch;
+    margin-inline: calc(var(--gutter) * -1); padding-block: 6px 2px;
+    overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none;
   }
-  .pool.heat { top: 52%; } .pool.sway { top: 62%; } .pool.air { top: 48%; left: 10%; }
+  .chooser::-webkit-scrollbar { display: none; }
+  /* Spacers rather than padding: some engines drop a scroller's end padding. */
+  .chooser::before, .chooser::after { content: ""; flex: 0 0 calc(var(--gutter) - 14px); }
+  .slide {
+    display: grid; grid-template-rows: auto 1fr; gap: 14px;
+    flex: 0 0 min(calc(100% - 2 * var(--gutter) - 36px), 620px);
+    scroll-snap-align: start; scroll-snap-stop: always;
+  }
+  .slide.konsoll { scroll-snap-align: end; }
+  .slide.floating .instrument, .slide.konsoll .instrument { grid-area: auto; }
+  .info { grid-area: auto; visibility: visible; opacity: 1; transform: none; transition: none; grid-template-columns: 1fr; gap: 22px; }
+  .instrument:hover { transform: none; }
 }
 
 /* ---------- floor: downloads and contact ---------- */
