@@ -177,7 +177,7 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .slide.floating .instrument { grid-area: 1 / 1; }
 .slide.konsoll .instrument { grid-area: 1 / 2; }
 .instrument {
-  position: relative; display: grid; gap: 16px; align-content: start; min-width: 0;
+  position: relative; display: grid; grid-template-rows: auto auto 1fr; gap: 16px; min-width: 0;
   padding: clamp(18px, 2.6vw, 26px); border-radius: 16px; text-decoration: none;
   transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .3s ease;
 }
@@ -186,7 +186,7 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .instrument .name { font: 400 clamp(18px, 2.3vw, 22px)/1 var(--mono); letter-spacing: .42em; margin-right: -.42em; }
 .instrument .kind { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 .instrument .shot { border-radius: 9px; width: 100%; }
-.instrument .foot { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.instrument .foot { align-self: end; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .instrument .status { font: 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
 .instrument .open { font: 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; display: inline-flex; gap: 8px; align-items: center; }
 .instrument .open .arrow { transition: transform .4s var(--ease); }
@@ -212,7 +212,7 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 /* ---------- summaries, each drawn in its instrument's world ---------- */
 .info {
   grid-area: 2 / 1 / 3 / 3; position: relative; overflow: hidden; border-radius: 16px;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 24px 40px; align-content: start;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px clamp(24px, 3.2vw, 40px); align-content: start;
   padding: clamp(22px, 3vw, 32px);
   visibility: hidden; opacity: 0; transform: translateY(6px);
   transition: opacity .45s var(--ease), transform .6s var(--ease), visibility 0s linear .45s;
@@ -284,18 +284,22 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
   .how-swipe { display: inline; }
   .pager { display: flex; }
 
+  /* One grid for both slides, so the cards share a height (their renders differ in shape)
+     and both summaries start on the same line; each slide spans the two rows as a subgrid. */
   .chooser {
-    display: flex; gap: 14px; align-items: stretch;
+    --slide-w: min(calc(100% - 2 * var(--gutter) - 36px), 620px);
+    display: grid; gap: 14px;
+    grid-template-columns: calc(var(--gutter) - 14px) var(--slide-w) var(--slide-w) calc(var(--gutter) - 14px);
+    grid-template-rows: auto 1fr;
     margin-inline: calc(var(--gutter) * -1); padding-block: 6px 2px;
     overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory; scroll-padding-inline: var(--gutter); scrollbar-width: none;
   }
   .chooser::-webkit-scrollbar { display: none; }
   /* Spacers rather than padding: some engines drop a scroller's end padding. */
-  .chooser::before, .chooser::after { content: ""; flex: 0 0 calc(var(--gutter) - 14px); }
+  .chooser::before, .chooser::after { content: ""; grid-row: 1 / 3; }
   .slide {
-    display: grid; grid-template-rows: auto 1fr; gap: 14px;
-    flex: 0 0 min(calc(100% - 2 * var(--gutter) - 36px), 620px);
+    display: grid; grid-row: 1 / 3; grid-template-rows: subgrid; gap: 14px;
     scroll-snap-align: start; scroll-snap-stop: always;
   }
   .slide.konsoll { scroll-snap-align: end; }
