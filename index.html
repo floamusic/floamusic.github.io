@@ -19,7 +19,7 @@
 
 <header class="topbar">
   <div class="wrap">
-    <a class="brand" href="#top" aria-label="Fløa, home">FLØA</a>
+    <a class="brand" href="#top" aria-label="Fløa, home"><span class="seam" aria-hidden="true"></span>FLØA</a>
     <nav class="topnav" aria-label="Sections">
       <a href="#instruments">Instruments</a>
       <a href="#downloads">Downloads</a>
@@ -30,18 +30,33 @@
 
 <main id="top">
 
+<div class="stage" id="stage">
+  <!-- The two worlds meet behind the cards: FLOATING's black and ember on one side, KONSOLL's
+       light stone and module colours on the other. The border leans toward the instrument you
+       point at. Decorative only. -->
+  <div class="backdrop" aria-hidden="true">
+    <div class="field"></div>
+    <span class="pool ember"></span>
+    <span class="pool ember-low"></span>
+    <span class="pool heat"></span>
+    <span class="pool sway"></span>
+    <span class="pool air"></span>
+    <span class="pool grain"></span>
+    <div class="grain-noise"></div>
+    <div class="settle"></div>
+  </div>
+
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Fløa · audio instruments</p>
-      <h1>Two instruments, made by ear.</h1>
-      <p class="lede">Audio Unit and VST3 plug-ins, built and tuned by one person. Point at an instrument to read about it, open it to go to its own page.</p>
+      <h1>Two instruments, made by&nbsp;ear.</h1>
+      <p class="lede">Audio Unit and VST3 plug-ins, built and tuned by one person. Point at an instrument to read about it; open it to go to its own page.</p>
     </div>
   </section>
 
   <!-- ============================================================ CHOOSER -->
   <section id="instruments">
     <div class="wrap">
-      <p class="eyebrow"><span class="num">01</span>Choose an instrument</p>
+      <h2 class="sr-only">Choose an instrument</h2>
 
       <div class="chooser">
         <a class="instrument floating" href="/floating-site/" data-pick="floating" aria-describedby="info-floating">
@@ -130,22 +145,25 @@
     </div>
   </section>
 
+</div><!-- /stage -->
+
+<div class="floor">
   <!-- ========================================================== DOWNLOADS -->
   <section id="downloads">
     <div class="wrap">
-      <p class="eyebrow"><span class="num">02</span>Downloads</p>
+      <h2>Downloads</h2>
       <div class="text"><p>Every download is free, with no account and no key. The builds are unsigned betas; each one has an install guide.</p></div>
       <div class="table-wrap">
         <table>
           <thead><tr><th scope="col">Instrument</th><th scope="col">macOS · Apple Silicon</th><th scope="col">Windows · x64</th></tr></thead>
           <tbody>
             <tr>
-              <td class="name"><a href="/floating-site/">FLOATING</a></td>
+              <td class="name"><a href="/floating-site/"><span class="mark" style="background: var(--fl-accent)" aria-hidden="true"></span>FLOATING</a></td>
               <td><a class="state ok" href="/floating-site/#beta">Available</a><span class="sub">AU + VST3 installer · <span data-floating-version>v0.4.0</span></span></td>
               <td><a class="state ok" href="/floating-site/#beta">Available</a><span class="sub">VST3 zip · <span data-floating-version>v0.4.0</span></span></td>
             </tr>
             <tr>
-              <td class="name"><a href="/konsoll-site/">KONSOLL</a></td>
+              <td class="name"><a href="/konsoll-site/"><span class="mark" style="background: var(--konsoll-rule)" aria-hidden="true"></span>KONSOLL</a></td>
               <td><span class="state soon">Soon</span><span class="sub">AU + VST3 installer · v0.9.0</span></td>
               <td><span class="state later">Later</span><span class="sub">VST3</span></td>
             </tr>
@@ -158,7 +176,7 @@
   <!-- ============================================================ CONTACT -->
   <section id="contact">
     <div class="wrap">
-      <p class="eyebrow"><span class="num">03</span>Support and contact</p>
+      <h2>Support and contact</h2>
       <div class="text"><p>Both instruments are made by one person. Bug reports, confusion and “this should work differently” are equally welcome; support goes straight into the time this takes.</p></div>
       <div class="link-rows">
         <div class="link-row"><span class="k">Ko-fi</span><a href="https://ko-fi.com/floamusic" rel="noopener">ko-fi.com/floamusic</a></div>
@@ -168,6 +186,7 @@
       </div>
     </div>
   </section>
+</div><!-- /floor -->
 </main>
 
 <footer>
@@ -183,8 +202,12 @@
 (function () {
   var preview = document.getElementById('preview');
   var cards = document.querySelectorAll('[data-pick]');
+  var stage = document.getElementById('stage');
   function pick(name) {
+    stage.setAttribute('data-lean', name);
     preview.classList.add('has-pick');
+    preview.classList.toggle('pick-floating', name === 'floating');
+    preview.classList.toggle('pick-konsoll', name === 'konsoll');
     cards.forEach(function (c) { c.classList.toggle('is-picked', c.getAttribute('data-pick') === name); });
     document.querySelectorAll('.info').forEach(function (i) { i.classList.toggle('is-on', i.id === 'info-' + name); });
   }
@@ -192,6 +215,10 @@
     c.addEventListener('mouseenter', function () { pick(c.getAttribute('data-pick')); });
     c.addEventListener('focus', function () { pick(c.getAttribute('data-pick')); });
   });
+  // The worlds settle back to the middle once the pointer leaves the instruments.
+  var zone = document.getElementById('instruments');
+  zone.addEventListener('mouseleave', function () { stage.removeAttribute('data-lean'); });
+  zone.addEventListener('focusout', function (e) { if (!zone.contains(e.relatedTarget)) stage.removeAttribute('data-lean'); });
 })();
 /* FLOATING's current version, read from its site's latest release. The markup already carries
    a correct fallback, so a blocked or rate-limited request leaves the page as it was. */
