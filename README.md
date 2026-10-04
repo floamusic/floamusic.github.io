@@ -5,7 +5,7 @@ Live (once published): <https://floamusic.github.io/>
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | The showcase: instrument chooser, KONSOLL overview, downloads table, support and contact |
+| `index.html` | The showcase: two equal instrument cards (whole card opens the instrument's site); hover or focus shows that instrument's summary below (both are shown on touch screens); downloads table; support and contact |
 | `assets/css/site.css` | Single stylesheet: a graphite room; each instrument card keeps its own palette (FLOATING kDark + orange, KONSOLL Soft Strata + module colours) |
 | `assets/fonts/` | Geist Mono and Share Tech Mono, SIL OFL, licences included |
 | `assets/img/` | Interface renders: FLOATING from `floating-site`, KONSOLL from `Konsoll_DSPTests --render-promo <file> [preset]` (2x, footer cropped so no version is pictured) |
