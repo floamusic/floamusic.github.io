@@ -113,10 +113,12 @@ a:hover { text-decoration-color: currentColor; }
 .stage[data-world="konsoll"] .world { --p: 1; }
 /* The strip itself only covers the stage while the border is inside it; KONSOLL's world sets the
    border just past the left edge, so each world runs on past its end in its own outer colour
-   (04.10: without this the right edge showed the black page behind). */
-.world::before, .world::after { content: ""; position: absolute; top: 0; bottom: 0; width: 25%; }
-.world::before { right: 100%; background: var(--fl-bg); }
-.world::after { left: 100%; background: var(--ko-surface); }
+   (04.10: without this the right edge showed the black page behind). They tuck 2px under the
+   strip and sit beneath its contents, so a strip edge on a half pixel leaves no dark seam and
+   the grain carries on over them. */
+.world::before, .world::after { content: ""; position: absolute; top: 0; bottom: 0; width: 25%; z-index: -1; }
+.world::before { right: calc(100% - 2px); background: var(--fl-bg); }
+.world::after { left: calc(100% - 2px); background: var(--ko-surface); }
 .field {
   position: absolute; inset: 0;
   background: linear-gradient(var(--tilt, 98deg),
