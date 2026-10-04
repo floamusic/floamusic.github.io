@@ -149,6 +149,8 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 
 .instrument.konsoll { --rule: var(--konsoll-rule); background: var(--ko-plate); color: var(--ko-ink); border: 1px solid #c9c7bf; box-shadow: 0 30px 60px -30px rgba(48, 59, 61, .55); }
 .instrument.konsoll .kind, .instrument.konsoll .status { color: var(--ko-muted); }
+/* The plug-in's own dotted wordmark (Assets/KonsollWordmark.svg), as in its header. */
+.instrument.konsoll .wordmark { height: 22px; width: auto; }
 .instrument.konsoll .shot { border: 1px solid var(--ko-line); }
 .instrument.konsoll:hover, .instrument.konsoll:focus-visible, .instrument.konsoll.is-picked { border-color: rgba(56, 126, 123, .6); box-shadow: 0 34px 70px -28px rgba(48, 59, 61, .65), 0 0 0 1px rgba(56, 126, 123, .2); }
 .instrument.konsoll:focus-visible { outline-color: var(--ko-teal); }
