@@ -161,6 +161,16 @@ a:hover { text-decoration-color: currentColor; }
   .pool.air { animation: drift-c 31s ease-in-out infinite alternate; }
   .pool.grain { animation: drift-c 43s ease-in-out infinite alternate-reverse; }
 }
+/* Safari: the backdrop is drawn still. Drifting pools, a strip held as its own layer and an
+   overlay-blended grain made Safari paint the stage in large separate layers it could not keep up
+   with during a fast scroll, so unpainted patches flashed (05.10; Chrome was fine). Without them
+   the backdrop paints with the page; choosing a world still slides the strip. Desktop only: on
+   phones the strip follows the swipe every frame and keeps its layer. */
+@media (hover: hover) and (min-width: 961px) {
+  .safari .world { will-change: auto; }
+  .safari .pool { animation: none; will-change: auto; }
+  .safari .grain-noise { mix-blend-mode: normal; opacity: .045; }
+}
 @keyframes drift-a { from { transform: translate3d(0, 0, 0) scale(1); } to { transform: translate3d(6vmax, -4vmax, 0) scale(1.12); } }
 @keyframes drift-b { from { transform: translate3d(0, 0, 0) scale(1.05); } to { transform: translate3d(-5vmax, 5vmax, 0) scale(.94); } }
 @keyframes drift-c { from { transform: translate3d(0, 0, 0) scale(.96); } to { transform: translate3d(-7vmax, -3vmax, 0) scale(1.1); } }
