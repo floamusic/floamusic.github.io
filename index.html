@@ -10,9 +10,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=14">
-<!-- Safari (not Chrome, Edge or Firefox on any platform): the backdrop is drawn still; see .safari in site.css. -->
-<script>if (/^((?!chrome|chromium|crios|fxios|edg|android).)*safari/i.test(navigator.userAgent)) document.documentElement.classList.add('safari');</script>
+<link rel="stylesheet" href="assets/css/site.css?v=15">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
 <meta property="og:description" content="Two instruments by Fløa. Audio Unit and VST3.">
@@ -243,9 +241,20 @@
     goes.forEach(function (g) { g.setAttribute('aria-current', g.getAttribute('data-go') === name ? 'true' : 'false'); });
   }
 
+  // Only a pointer that actually moves picks a card. Scrolling slides the cards under a resting
+  // pointer and browsers then report it entering them; acting on that flipped the world mid-scroll
+  // (05.10, recorded in Safari). Such reports carry the pointer's last screen position.
+  var px = null, py = null;
+  function moved(e) { return e.screenX !== px || e.screenY !== py; }
+  document.addEventListener('mousemove', function (e) { px = e.screenX; py = e.screenY; }, { passive: true });
   cards.forEach(function (c) {
-    function point() { if (!swipe.matches) choose(c.getAttribute('data-pick')); }
+    function point(e) {
+      if (swipe.matches) return;
+      if (e.type !== 'focus' && !moved(e)) return;
+      choose(c.getAttribute('data-pick'));
+    }
     c.addEventListener('mouseenter', point);
+    c.addEventListener('mousemove', point, { passive: true });
     c.addEventListener('focus', point);
   });
 
