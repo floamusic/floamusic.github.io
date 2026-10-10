@@ -12,7 +12,7 @@ Live (once published): <https://floamusic.github.io/>
 | `assets/data/releases.json` | Every release with its barcode, date, label, other artists, links and cover colours; the updater's state |
 | `assets/img/music/` | Covers, 760 px for the shelf and 120 px for the list, made from the originals and never enlarged |
 | `tools/releases/` | `update.py` brings the releases up to date: Deezer lists them, Apple Music (matched by barcode) gives the original cover and its link, Spotify gives its link when `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` are set. `config.json` holds the artist ids and `hide`, the Deezer ids never to show (label compilations, releases wrongly credited). Runs locally with `python3 tools/releases/update.py` (curl and `sips`) |
-| `.github/workflows/releases.yml` | Runs the updater every day at 05:23 UTC and on request (Actions → Releases → Run workflow); commits only when something changed, then asks Pages to rebuild |
+| `.github/workflows/releases.yml` | Runs the updater every day at 05:23 UTC and on request (Actions → Releases → Run workflow); commits only when something changed; the push rebuilds Pages |
 | `assets/fonts/` | Geist Mono and Share Tech Mono as WOFF2 (TTF kept as fallback), SIL OFL, licences included |
 | `assets/img/` | Interface renders: FLOATING from `floating-site`, KONSOLL from `Konsoll_DSPTests --render-promo <file> [preset]` (2x, footer cropped so no version is pictured) |
 

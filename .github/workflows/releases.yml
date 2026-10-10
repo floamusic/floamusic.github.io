@@ -12,7 +12,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
 
 concurrency:
   group: releases
@@ -34,9 +33,9 @@ jobs:
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
         run: python3 tools/releases/update.py | tee "$RUNNER_TEMP/releases.log"
 
+      # The push starts the Pages build by itself (10.10: asking for another one as well made the
+      # first of the two fail).
       - name: Publish
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           git add -A assets/data assets/img/music music
           if git diff --cached --quiet; then echo "No new releases."; exit 0; fi
@@ -44,5 +43,3 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Music: bring the releases up to date" -m "$(cat "$RUNNER_TEMP/releases.log")"
           git push
-          # Pages builds from main; ask for a build in case a push by this token does not start one.
-          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
