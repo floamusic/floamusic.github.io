@@ -251,9 +251,9 @@ def render_list(releases):
             '<li class="rel" id="%(slug)s" data-date="%(date)s" data-type="%(type)s" data-light="%(light)s" data-deep="%(deep)s"'
             ' data-spotify="%(spotify)s">'
             '<img class="rel-thumb" src="../assets/img/music/%(slug)s-s.jpg" alt="" width="60" height="60" loading="lazy" decoding="async">'
-            '<span class="rel-main"><button type="button" class="rel-title">%(title)s</button>'
-            '<span class="rel-with">%(with)s</span></span>'
             '<span class="rel-year">%(year)s</span>'
+            '<button type="button" class="rel-title">%(title)s</button>'
+            '<span class="rel-with">%(with)s</span>'
             '<span class="rel-label">%(label)s</span>'
             '<span class="rel-type">%(type)s</span>'
             '<span class="rel-links">%(anchors)s</span></li>' % {

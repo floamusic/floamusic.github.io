@@ -1,7 +1,7 @@
 /* Fløa — Music page. Reads the list of releases that tools/releases/update.py writes into the page
-   and builds the shelf, the pager's timeline and the colour of the room from it. The chosen
-   release is in the address (#slug), so a link can open the page on it. The Spotify player is only
-   loaded when someone presses Play; until then the page sends nothing to Spotify. */
+   and builds the shelf, the timeline and the colour of the room from it. The chosen release is in
+   the address (#slug), so a link can open the page on it. The Spotify player is only loaded when
+   someone presses Listen; until then the page sends nothing to Spotify. */
 (function () {
   'use strict';
   var list = document.getElementById('releases');
@@ -10,15 +10,15 @@
 
   var music = document.querySelector('.music');
   var shelf = document.querySelector('.m-shelf');
-  var stage = shelf.querySelector('.m-covers');
-  var ticksBox = shelf.querySelector('.m-ticks');
-  var yearsBox = shelf.querySelector('.m-years');
+  var stage = shelf.querySelector('.m-stage');
+  var timeline = document.querySelector('.m-timeline');
+  var ticksBox = timeline.querySelector('.m-ticks');
+  var yearsBox = timeline.querySelector('.m-years');
+  var toggle = document.querySelector('.m-toggle');
+  var listen = shelf.querySelector('.m-listen');
+  var player = shelf.querySelector('.m-player');
+  var linksBox = shelf.querySelector('.m-links');
   var steps = shelf.querySelectorAll('.m-step');
-  var card = shelf.querySelector('.m-card');
-  var listen = card.querySelector('.m-listen');
-  var note = card.querySelector('.m-note');
-  var player = card.querySelector('.m-player');
-  var linksBox = card.querySelector('.m-links');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   var R = rows.map(function (li, i) {
@@ -46,14 +46,14 @@
 
   /* ---------- shelf ---------- */
   // Per distance from the chosen cover: offset in cover widths, scale, turn (deg), opacity, brightness.
-  var SLOT = [[0, 1, 0, 1, 1], [.87, .66, 34, .9, .7], [1.37, .5, 42, .6, .55], [1.74, .4, 48, .32, .45], [2.05, .3, 52, 0, .4]];
+  var SLOT = [[0, 1, 0, 1, 1], [.87, .66, 34, .92, .78], [1.37, .5, 42, .62, .6], [1.74, .4, 48, .35, .48], [2.05, .3, 52, 0, .4]];
   var covers = R.map(function (r) {
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'm-cover'; b.tabIndex = -1;
     b.setAttribute('aria-hidden', 'true');
     var img = document.createElement('img');
     img.alt = ''; img.decoding = 'async'; img.draggable = false;
-    img.width = 350; img.height = 350;
+    img.width = 380; img.height = 380;
     b.appendChild(img);
     b.addEventListener('click', function () { if (!dragged) choose(r.i); });
     stage.appendChild(b);
@@ -76,7 +76,7 @@
     });
   }
 
-  /* ---------- the pager's timeline ---------- */
+  /* ---------- timeline ---------- */
   var first = +R[R.length - 1].date.slice(0, 4), last = +R[0].date.slice(0, 4);
   var t0 = Date.parse(first + '-01-01'), t1 = Date.parse((last + 1) + '-01-01');
   function at(d) { return ((Date.parse(d) - t0) / (t1 - t0) * 100).toFixed(3) + '%'; }
@@ -84,22 +84,22 @@
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'm-tick'; b.tabIndex = -1; b.title = r.title + ' · ' + day(r.date);
     b.style.left = at(r.date);
-    b.appendChild(document.createElement('span'));
+    var bar = document.createElement('span');
+    bar.style.background = r.light;
+    b.appendChild(bar);
     b.addEventListener('click', function () { choose(r.i); });
     ticksBox.appendChild(b);
     return b;
   });
   for (var y = first; y <= last; y++) {
-    var m = document.createElement('span'), c = document.createElement('span');
-    c.className = 'c'; c.textContent = String(y).slice(0, 2);
-    m.appendChild(c); m.appendChild(document.createTextNode(String(y).slice(2)));
-    m.style.left = at(y + '-01-01');
+    var m = document.createElement('span');
+    m.textContent = y; m.style.left = at(y + '-01-01');
     yearsBox.appendChild(m);
   }
 
   /* ---------- the chosen release ---------- */
-  var eyebrow = card.querySelector('.m-eyebrow'), title = card.querySelector('.m-title'), withP = card.querySelector('.m-with');
-  var dateD = card.querySelector('.m-date'), typeD = card.querySelector('.m-type'), labelD = card.querySelector('.m-label');
+  var eyebrow = shelf.querySelector('.m-eyebrow'), title = shelf.querySelector('.m-title'), meta = shelf.querySelector('.m-meta');
+  var pos = timeline.querySelector('.m-pos');
   function playerFor(r) {
     player.innerHTML = '';
     var f = document.createElement('iframe');
@@ -111,7 +111,7 @@
   function openPlayer(open) {
     player.hidden = !open;
     listen.setAttribute('aria-expanded', open ? 'true' : 'false');
-    listen.lastChild.textContent = open ? 'Close player' : 'Play here';
+    listen.lastChild.textContent = open ? 'Close player' : 'Listen here';
     if (open) playerFor(R[sel]); else player.innerHTML = '';
   }
 
@@ -120,31 +120,23 @@
     var r = R[i], was = R[sel];
     sel = i;
     layout();
-    eyebrow.textContent = i === 0 ? 'Latest release' : 'Release · ' + (i + 1) + ' of ' + R.length;
+    eyebrow.textContent = i === 0 ? 'Latest release' : r.date.slice(0, 4);
     title.textContent = r.title;
-    withP.textContent = r.with ? 'with ' + r.with : '';
-    dateD.textContent = day(r.date);
-    typeD.textContent = r.type;
-    labelD.textContent = r.label || '—';
+    meta.textContent = (r.with ? 'with ' + r.with + ' · ' : '') + day(r.date) + ' · ' + r.type + (r.label ? ' · ' + r.label : '');
     linksBox.innerHTML = '';
     r.links.forEach(function (l) {
-      var a = document.createElement('a'), k = document.createElement('span'), v = document.createElement('span'), arrow = document.createElement('span');
-      a.className = 'm-link'; a.href = l.url; a.target = '_blank'; a.rel = 'noopener';
-      k.className = 'k'; k.textContent = l.name;
-      v.className = 'v'; v.textContent = 'Open';
-      arrow.className = 'arrow'; arrow.setAttribute('aria-hidden', 'true'); arrow.textContent = '↗';
-      v.appendChild(arrow); a.appendChild(k); a.appendChild(v);
+      var a = document.createElement('a');
+      a.href = l.url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = l.name + ' ↗';
       linksBox.appendChild(a);
     });
     listen.hidden = !r.spotify;
-    note.textContent = r.spotify
-      ? 'Plays here from Spotify. Nothing loads from Spotify until you press play.'
-      : 'Not on Spotify yet; open it in one of the places on the right.';
     if (!player.hidden) { if (r.spotify) playerFor(r); else openPlayer(false); }
+    music.style.setProperty('--m-deep', r.deep);
+    music.style.setProperty('--m-floor', mix(r.deep, '#101211', .7));
     music.style.setProperty('--m-light', r.light);
-    music.style.setProperty('--m-field', mix(r.deep, '#060707', .35));
     was.li.classList.remove('is-on'); r.li.classList.add('is-on');
     ticks[was.i].classList.remove('is-on'); ticks[i].classList.add('is-on');
+    pos.textContent = (i + 1) + ' / ' + R.length;
     steps[0].disabled = i === 0;
     steps[1].disabled = i === R.length - 1;
     if (!quiet && history.replaceState) history.replaceState(null, '', '#' + r.slug);
@@ -181,19 +173,28 @@
     if (Math.abs(wheel) > 70) { choose(sel + (wheel > 0 ? 1 : -1)); wheel = 0; }
   }, { passive: false });
 
-  /* A row of the table puts its release on the shelf and brings the shelf into view. */
+  /* ---------- the list ---------- */
+  function openList(open) {
+    list.hidden = !open;
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.textContent = open ? 'Hide the list' : 'All ' + R.length + ' releases as a list';
+  }
+  toggle.addEventListener('click', function () { openList(list.hidden); });
   list.addEventListener('click', function (e) {
     if (e.target.closest('a')) return;
     var li = e.target.closest('.rel');
     if (!li) return;
+    e.preventDefault();
     choose(rows.indexOf(li));
-    shelf.scrollIntoView({ behavior: still.matches ? 'auto' : 'smooth', block: 'start' });
+    var top = shelf.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * .5) shelf.scrollIntoView({ behavior: still.matches ? 'auto' : 'smooth', block: 'start' });
   });
 
   /* ---------- start ---------- */
   document.documentElement.classList.add('js');
-  document.querySelector('.m-count').textContent = R.length + ' releases, ' + first + '–' + last;
-  shelf.hidden = false;
+  document.querySelector('.m-count').textContent = R.length + ' releases · ' + first + '–' + last;
+  shelf.hidden = false; timeline.hidden = false; toggle.hidden = false;
+  openList(false);
   var start = rows.findIndex(function (li) { return '#' + li.id === location.hash; });
   choose(Math.max(start, 0), true);
   var raf = 0;
