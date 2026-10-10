@@ -87,6 +87,25 @@
   "deep": "#162b3b"
  },
  {
+  "id": 1013064071,
+  "title": "Exhale",
+  "slug": "exhale-2",
+  "with": [
+   "Holen"
+  ],
+  "date": "2026-07-10",
+  "label": "Armada Chill",
+  "upc": "8718522600470",
+  "type": "Single",
+  "links": {
+   "deezer": "https://www.deezer.com/album/1013064071",
+   "apple": "https://music.apple.com/us/album/exhale-single/6783638032",
+   "spotify": ""
+  },
+  "light": "#6ba5d1",
+  "deep": "#162b3b"
+ },
+ {
   "id": 998743291,
   "title": "Velvia",
   "links": {
@@ -658,6 +677,25 @@
   "type": "Single",
   "light": "#b764d8",
   "deep": "#31163b"
+ },
+ {
+  "id": 425957227,
+  "title": "Falling Away",
+  "slug": "falling-away-2",
+  "with": [
+   "Phonic Youth"
+  ],
+  "date": "2023-04-28",
+  "label": "Armada Chill",
+  "upc": "8718522397509",
+  "type": "Single",
+  "links": {
+   "deezer": "https://www.deezer.com/album/425957227",
+   "apple": "https://music.apple.com/us/album/falling-away-single/1680721449",
+   "spotify": ""
+  },
+  "light": "#d86473",
+  "deep": "#3b161b"
  },
  {
   "id": 397082377,
