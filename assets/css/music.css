@@ -1,143 +1,175 @@
-/* Fløa — Music page, on top of site.css (fonts, top bar, footer, tokens).
-   The releases stand on a shelf: the chosen cover faces the room, its neighbours turn away into
-   the perspective, and the room takes the chosen cover's colour (--m-deep for the glow behind the
-   shelf, --m-floor for the rest of the page, --m-light for accents). Below, a timeline marks every
-   release at its date, and the full list, which music.js reads to build all of this, opens on
-   request. Without script the list is the page. */
+/* Fløa — Music page, on top of site.css (fonts, top bar, hero type, grain, floor, footer).
+   Built from the showcase's own parts: a stage whose dark field carries pools of light and the
+   film grain and settles into the graphite floor; plates with a coloured rule along the top; small
+   mono capitals for labels over sans-serif text; a table on the floor. Here the stage takes the
+   chosen cover's colour (--m-light for the light, --m-field for the ground), and the releases
+   stand on a shelf: the chosen cover faces the room, its neighbours turn away. */
 
 .music {
-  --m-floor: #101211;
-  --m-deep: #1d2321;
   --m-light: #a9b1ac;
-  --cv: clamp(220px, 28vw, 380px);
-  position: relative; isolation: isolate; overflow: hidden;
-  background-color: var(--m-floor);
+  --m-field: #0b0c0c;
+  --m-plate: rgba(9, 9, 11, .8);
+  --m-line: #2b2b30;
+  --m-muted: #a3a5ab;
+  --m-label: #8e9096;
+  --cv: clamp(220px, 26vw, 350px);
+}
+
+/* ---------- stage: the room lit by the chosen cover ---------- */
+.m-stage { position: relative; isolation: isolate; overflow: hidden; padding-bottom: clamp(56px, 8vw, 104px); }
+.m-backdrop {
+  position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  background-color: var(--m-field); transition: background-color 1.2s var(--ease);
+}
+/* The field darkens towards its edges, as the showcase's does away from its pools. */
+.m-backdrop::before { content: ""; position: absolute; inset: 0; background: radial-gradient(130% 90% at 50% 10%, transparent 0%, rgba(5, 5, 6, .5) 62%, rgba(5, 5, 6, .8) 100%); }
+.m-pool {
+  position: absolute; border-radius: 50%; background-color: var(--m-light);
   transition: background-color 1.2s var(--ease);
+  -webkit-mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, .33) 45%, transparent 72%);
+  mask-image: radial-gradient(closest-side, #000 0%, rgba(0, 0, 0, .33) 45%, transparent 72%);
 }
-.m-glow {
-  position: absolute; z-index: -1; left: 0; right: 0; top: 0; height: min(1100px, 140vh); pointer-events: none;
-  background-color: var(--m-deep); transition: background-color 1.2s var(--ease);
-  -webkit-mask-image: radial-gradient(60% 55% at 50% 34%, #000 0%, rgba(0, 0, 0, .55) 45%, transparent 85%);
-  mask-image: radial-gradient(60% 55% at 50% 34%, #000 0%, rgba(0, 0, 0, .55) 45%, transparent 85%);
+.m-pool-a { width: 64vmax; height: 64vmax; left: calc(50% - 32vmax); top: 4%; opacity: .26; }
+.m-pool-b { width: 42vmax; height: 42vmax; left: calc(12% - 21vmax); top: 46%; opacity: .16; }
+.m-pool-c { width: 38vmax; height: 38vmax; left: calc(90% - 19vmax); top: -14vmax; opacity: .2; }
+@media (hover: hover) and (min-width: 961px) and (prefers-reduced-motion: no-preference) {
+  .m-pool { will-change: transform; }
+  .m-pool-a { animation: drift-a 36s var(--ease) infinite alternate; }
+  .m-pool-b { animation: drift-b 41s ease-in-out infinite alternate; }
+  .m-pool-c { animation: drift-c 31s ease-in-out infinite alternate-reverse; }
 }
 
-.m-intro { padding-top: clamp(28px, 5vw, 52px); text-align: center; }
-.m-intro h1 { font: 400 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); margin: 0; max-width: none; }
-.m-count { color: var(--ink-low); margin-left: 10px; }
+.m-hero { padding-block: clamp(56px, 9vw, 124px) clamp(28px, 4vw, 44px); }
 
-/* ---------- shelf ---------- */
-.m-stage {
-  position: relative; height: calc(var(--cv) * 1.26); margin-top: clamp(20px, 3vw, 36px);
+/* ---------- the shelf ---------- */
+.m-shelf { scroll-margin-top: 64px; }
+.m-covers {
+  position: relative; height: calc(var(--cv) + 36px);
   perspective: 1400px; touch-action: pan-y; user-select: none; -webkit-user-select: none;
 }
-.m-stage:focus-visible { outline: 0; }
-.m-stage:focus-visible .m-cover.is-on img { outline: 2px solid var(--ink); outline-offset: 6px; }
+.m-covers:focus-visible { outline: 0; }
+.m-covers:focus-visible .m-cover.is-on img { outline: 2px solid var(--m-light); outline-offset: 6px; }
 .m-cover {
-  all: unset; position: absolute; left: 50%; top: 0; width: var(--cv); height: var(--cv); margin-left: calc(var(--cv) / -2);
-  cursor: pointer; transition: transform .7s var(--ease), opacity .7s var(--ease), filter .7s var(--ease);
+  all: unset; position: absolute; left: 50%; top: 12px; width: var(--cv); height: var(--cv); margin-left: calc(var(--cv) / -2);
+  cursor: pointer; transition: transform .8s var(--ease), opacity .8s var(--ease), filter .8s var(--ease);
 }
 .m-cover img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 4px; background: rgba(255, 255, 255, .05);
-  box-shadow: 0 30px 60px -24px #000, 0 0 0 1px rgba(255, 255, 255, .07);
-  -webkit-box-reflect: below 8px linear-gradient(transparent 72%, rgba(255, 255, 255, .16));
+  width: 100%; height: 100%; object-fit: cover; border-radius: 9px; background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .08); box-sizing: border-box;
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .9);
   -webkit-user-drag: none;
 }
 
-.m-shelf { scroll-margin-top: 72px; }
-/* The arrows stay level with the title when the player opens below it. */
-.m-now { display: flex; align-items: flex-start; justify-content: center; gap: 20px; max-width: 820px; }
-.m-now .m-step { margin-top: calc(17px + 10px + clamp(28px, 4vw, 48px) * .52 - 24px); }
-.m-info { flex: 1 1 auto; min-width: 0; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.m-eyebrow { margin: 0; font: 12px/1.4 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--m-light); transition: color .6s; }
-.m-title { margin: 0; font: 400 clamp(28px, 4vw, 48px)/1.04 var(--mono); letter-spacing: -.035em; color: #f3f2ec; text-wrap: balance; overflow-wrap: anywhere; }
-.m-meta { margin: 0; font: 13px/1.5 var(--mono); letter-spacing: .05em; color: var(--ink-muted); }
-.m-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 8px; }
-.m-links { display: contents; }
-
-.m-listen, .m-links a, .m-toggle {
-  min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .2); background: transparent;
-  display: inline-flex; align-items: center; gap: 10px; font: 13px/1 var(--mono); letter-spacing: .06em; color: var(--ink);
-  text-decoration: none; cursor: pointer; transition: border-color .2s, background-color .6s;
+/* The pager, as the showcase's on phones: names at the ends, the track between them. Here the
+   track is the timeline, a mark for every release at its date. */
+.m-pager { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 24px); margin-top: clamp(28px, 4vw, 40px); }
+.m-step {
+  appearance: none; background: none; border: 0; padding: 12px 0; cursor: pointer; white-space: nowrap;
+  font: 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: #8d968f; transition: color .3s ease, opacity .3s ease;
 }
-.m-links a:hover, .m-toggle:hover, .m-step:hover:not(:disabled) { border-color: rgba(255, 255, 255, .5); }
-.m-listen { border: 0; background: var(--m-light); color: #121313; text-transform: uppercase; letter-spacing: .08em; padding-inline: 20px; }
+.m-step:hover:not(:disabled) { color: #f3f2ec; }
+.m-step:disabled { opacity: .35; cursor: default; }
+.m-track { position: relative; flex: 1; min-width: 0; padding-top: 6px; }
+.m-ticks { position: relative; height: 30px; }
+.m-ticks::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; border-radius: 2px; background: rgba(236, 235, 228, .16); }
+.m-tick { all: unset; position: absolute; bottom: 0; width: 9px; margin-left: -4.5px; height: 30px; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; z-index: 1; }
+.m-tick span { display: block; width: 2px; height: 8px; border-radius: 2px; background: rgba(236, 235, 228, .4); transition: height .4s var(--ease), background-color .4s ease; }
+.m-tick:hover span { height: 16px; background: rgba(236, 235, 228, .8); }
+.m-tick.is-on span { height: 26px; background: var(--m-light); }
+.m-years { position: relative; height: 22px; font: 11px/1 var(--mono); letter-spacing: .1em; color: #8d968f; }
+.m-years > span { position: absolute; top: 9px; transform: translateX(-1px); }
+
+/* ---------- the chosen release: a plate like the showcase's summaries ---------- */
+.m-card {
+  position: relative; overflow: hidden; margin-top: clamp(20px, 3vw, 28px); border-radius: 16px;
+  display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, .85fr); gap: 24px clamp(24px, 3.2vw, 40px);
+  padding: clamp(22px, 3vw, 32px); background: var(--m-plate); border: 1px solid var(--m-line); color: var(--fl-ink);
+  box-shadow: 0 30px 60px -28px rgba(0, 0, 0, .9);
+}
+.m-card::before { content: ""; position: absolute; left: 18px; right: 18px; top: 0; height: 2px; border-radius: 2px; background: var(--m-light); transition: background-color .6s ease; }
+.m-card h3 { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; margin: 0 0 14px; color: var(--m-label); }
+.m-card .m-eyebrow { color: var(--m-light); transition: color .6s ease; }
+.m-title { font: 400 clamp(24px, 3vw, 34px)/1.12 var(--mono); letter-spacing: -.02em; margin: 0 0 8px; color: #f3f2ec; overflow-wrap: anywhere; }
+.m-with { margin: 0 0 16px; color: var(--m-muted); font-size: 15px; }
+.m-with:empty { display: none; }
+.m-facts { margin: 18px 0 0; display: grid; grid-template-columns: auto 1fr; align-items: baseline; gap: 8px 16px; font-size: 15px; }
+.m-facts dt { font: 11px/1.9 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--m-label); }
+.m-facts dd { margin: 0; color: var(--m-muted); font-variant-numeric: tabular-nums; }
+.m-note { margin: 0 0 16px; color: var(--m-muted); font-size: 15px; }
+
+/* Play is a state chip of the showcase, at a size a finger finds, in the cover's light. */
+.m-listen {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 40px; padding: 0 14px; border: 0; border-radius: 5px; cursor: pointer;
+  font: 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase;
+  background: rgba(236, 235, 228, .1); background: color-mix(in srgb, var(--m-light) 17%, transparent); color: var(--m-light);
+  transition: background-color .3s ease, color .6s ease;
+}
+.m-listen:hover { background: color-mix(in srgb, var(--m-light) 27%, transparent); }
 .m-listen[hidden] { display: none; }
-.m-player { width: min(100%, 560px); margin-top: 8px; }
+.m-play { width: 0; height: 0; border-left: 8px solid currentColor; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.m-listen[aria-expanded="true"] .m-play { width: 8px; height: 8px; border: 0; border-radius: 1px; background: currentColor; }
+.m-player { margin-top: 16px; }
 .m-player iframe { display: block; width: 100%; height: 152px; border: 0; border-radius: 12px; }
 
-.m-step {
-  flex: 0 0 auto; width: 48px; height: 48px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .2);
-  background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
-  transition: border-color .2s, opacity .2s;
-}
-.m-step:disabled { opacity: .3; cursor: default; }
+/* Platforms as the showcase's link rows: the name in capitals, the way there on the right. */
+.m-link { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--m-line); text-decoration: none; }
+.m-link:first-child { padding-top: 0; }
+.m-link .k { font: 12px/1.6 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--m-label); }
+.m-link .v { font-size: 15px; color: var(--fl-ink); text-decoration: underline; text-decoration-color: rgba(236, 235, 228, .3); text-underline-offset: .22em; }
+.m-link .v .arrow { display: inline-block; margin-left: 6px; text-decoration: none; transition: transform .4s var(--ease); }
+.m-link:hover .v { text-decoration-color: currentColor; }
+.m-link:hover .v .arrow { transform: translate(2px, -2px); }
 
-/* ---------- timeline ---------- */
-.m-timeline { margin-top: clamp(44px, 6vw, 64px); }
-.m-tl-head { display: flex; justify-content: space-between; margin-bottom: 14px; font: 12px/1.4 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-low); }
-.m-ticks { position: relative; height: 64px; border-bottom: 1px solid rgba(255, 255, 255, .18); }
-.m-tick { all: unset; position: absolute; bottom: 0; width: 10px; margin-left: -5px; height: 56px; cursor: pointer; display: flex; align-items: flex-end; justify-content: center; }
-.m-tick span { display: block; width: 2px; height: 16px; border-radius: 2px; opacity: .55; transition: height .4s var(--ease), opacity .4s; }
-.m-tick:hover span { height: 28px; opacity: 1; }
-.m-tick.is-on span { width: 3px; height: 44px; opacity: 1; }
-.m-years { position: relative; height: 32px; font: 12px/1 var(--mono); letter-spacing: .06em; color: var(--ink-muted); }
-.m-years span { position: absolute; top: 10px; padding-left: 6px; border-left: 1px solid rgba(255, 255, 255, .18); }
-
-/* ---------- the list ---------- */
-.m-all { padding-block: clamp(36px, 5vw, 48px) clamp(56px, 8vw, 96px); }
-.m-all-head { font: 400 clamp(24px, 3.2vw, 32px)/1.2 var(--mono); letter-spacing: -.02em; margin: 0 0 20px; }
-.js .m-all-head { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-.m-toggle { text-transform: uppercase; font-size: 12px; letter-spacing: .1em; }
-.m-toggle[hidden] { display: none; }
-.m-list { list-style: none; margin: 24px 0 0; padding: 0; border-top: 1px solid rgba(255, 255, 255, .12); }
-.m-list[hidden] { display: none; }
+/* ---------- the floor: every release, as the showcase's downloads table ---------- */
+.m-table { margin-top: 24px; border: 1px solid var(--line); border-radius: 14px; background: var(--floor-plate); overflow: hidden; }
+.m-list { list-style: none; margin: 0; padding: 0; }
 .rel {
-  display: grid; grid-template-columns: 44px 48px minmax(0, 2fr) minmax(0, 1.4fr) minmax(0, 1.2fr) 64px auto;
-  gap: 16px; align-items: center; padding: 8px 4px; border-bottom: 1px solid rgba(255, 255, 255, .07);
-  font: 13px/1.4 var(--mono); color: var(--ink-muted);
+  display: grid; grid-template-columns: 48px minmax(0, 2.2fr) 52px minmax(0, 1.3fr) 76px minmax(max-content, 1fr);
+  gap: 18px; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--line-soft);
 }
-.js .rel { cursor: pointer; }
-.js .rel:hover { background: rgba(255, 255, 255, .04); }
-.rel-thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 2px; }
-.rel-title { all: unset; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.rel-title:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.rel:last-child { border-bottom: 0; }
+.js .rel { cursor: pointer; transition: background-color .3s ease; }
+.js .rel:hover { background: rgba(236, 235, 228, .025); }
+.rel.is-on { background: rgba(236, 235, 228, .04); }
+.rel-thumb { width: 48px; height: 48px; object-fit: cover; border-radius: 4px; }
+.rel-main { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rel-title { all: unset; font: 14px/1.3 var(--mono); color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color .4s ease; }
+.rel-title:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; border-radius: 2px; }
 .rel.is-on .rel-title { color: var(--m-light); }
-.rel-with, .rel-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.rel-type { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; }
-.rel-links { display: flex; gap: 14px; justify-content: flex-end; }
-.rel-links a { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-low); text-decoration: none; padding-block: 6px; }
+.rel-with { font-size: 13px; color: var(--ink-low); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rel-with:empty { display: none; }
+.rel-with::before { content: "with "; }
+.rel-year { font: 13px/1 var(--mono); color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.rel-label { font-size: 14px; color: var(--ink-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rel-type { justify-self: start; font: 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; padding: 6px 8px; border-radius: 5px; background: #23272a; color: var(--ink-muted); }
+.rel-links { display: flex; gap: 16px; justify-content: flex-end; }
+.rel-links a { font: 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink-low); text-decoration: none; padding-block: 8px; transition: color .2s ease; }
 .rel-links a:hover { color: var(--ink); }
-.m-source { margin: 20px 0 0; font: 12px/1.6 var(--mono); color: var(--ink-low); letter-spacing: .03em; }
 
-/* Tablets: the label and type columns give way. */
-@media (max-width: 900px) {
-  .rel { grid-template-columns: 44px 48px minmax(0, 1.6fr) minmax(0, 1fr) auto; }
+/* ---------- tablets and phones ---------- */
+@media (max-width: 960px) {
+  .m-card { grid-template-columns: 1fr 1fr; }
+  .m-card > :first-child { grid-column: 1 / -1; }
+  .rel { grid-template-columns: 48px minmax(0, 1fr) 52px minmax(max-content, auto); }
   .rel-label, .rel-type { display: none; }
 }
-/* Phones: the shelf narrows, the arrows sit beside the title, and each list row is the cover with
-   title and year, the other artists and the links beneath. */
-@media (max-width: 640px) {
-  .music { --cv: min(62vw, 300px); }
-  /* The arrows sit on the shelf at the cover's sides, so the title and links get the full width. */
-  .m-shelf { position: relative; }
-  .m-now .m-step {
-    position: absolute; z-index: 200; top: calc(clamp(20px, 3vw, 36px) + var(--cv) / 2 - 22px); margin: 0;
-    width: 44px; height: 44px; background: rgba(10, 11, 11, .55); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-  }
-  .m-now .m-step[data-step="-1"] { left: 10px; }
-  .m-now .m-step[data-step="1"] { right: 10px; }
-  .m-now .m-step:disabled { opacity: 0; pointer-events: none; }
-  .m-links a, .m-listen { min-height: 40px; padding-inline: 14px; font-size: 12px; }
-  .m-tick { width: 8px; margin-left: -4px; }
-  .m-years span { font-size: 11px; padding-left: 4px; }
-  .rel { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "thumb title year" "thumb with with" "thumb links links"; row-gap: 2px; column-gap: 12px; }
-  .rel-thumb { grid-area: thumb; align-self: start; }
-  .rel-title { grid-area: title; }
-  .rel-year { grid-area: year; font-size: 12px; }
-  .rel-with { grid-area: with; font-size: 12px; }
-  .rel-with:empty { display: none; }
+@media (max-width: 960px), (hover: none) {
+  .m-backdrop .grain-noise { mix-blend-mode: normal; opacity: .045; }
+}
+@media (max-width: 600px) {
+  .music { --cv: min(64vw, 290px); }
+  .m-pager { gap: 12px; }
+  .m-step { letter-spacing: .08em; font-size: 11px; }
+  .m-years > span { font-size: 10px; letter-spacing: .02em; }
+  .m-years .c { display: none; }
+  .m-years > span::before { content: "’"; }
+  .m-card { grid-template-columns: 1fr; gap: 26px; }
+  .rel { grid-template-columns: 44px minmax(0, 1fr) auto; grid-template-areas: "thumb main year" "thumb links links"; row-gap: 4px; column-gap: 14px; padding: 12px 16px; }
+  .rel-thumb { grid-area: thumb; width: 44px; height: 44px; align-self: start; }
+  .rel-main { grid-area: main; }
+  .rel-year { grid-area: year; }
   .rel-links { grid-area: links; justify-content: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .music, .m-glow, .m-cover { transition: none; }
+  .m-backdrop, .m-pool, .m-cover { transition: none; }
 }
