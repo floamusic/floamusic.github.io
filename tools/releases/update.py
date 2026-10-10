@@ -210,6 +210,33 @@ def fill(r, cfg, token, taken):
     return r['title']
 
 
+def merge_twins(releases):
+    """One release put out twice (two labels, two barcodes; Deezer shows each in some countries)
+    shares its Apple Music page, or its title and artists. The copy with a Spotify link, else the
+    one listed first, stays; the other's Deezer id is kept under `also` so it is not added again."""
+    groups, dropped = {}, []
+    for r in releases:
+        if not complete(r):
+            continue
+        key = r['links'].get('apple') or '%s|%s' % (fold(r['title']), fold(', '.join(r['with'])))
+        alt = '%s|%s' % (fold(r['title']), fold(', '.join(r['with'])))
+        twin = groups.get(key) or groups.get(alt)
+        if twin is None:
+            groups[key] = groups[alt] = r
+            continue
+        keep, drop = (twin, r) if twin['links'].get('spotify') or not r['links'].get('spotify') else (r, twin)
+        keep.setdefault('also', [])
+        keep['also'] = sorted(set(keep['also']) | {drop['id']} | set(drop.get('also', [])))
+        groups[key] = groups[alt] = keep
+        dropped.append(drop)
+    for r in dropped:
+        for suffix in ('.jpg', '-s.jpg'):
+            path = os.path.join(IMG, r['slug'] + suffix)
+            if os.path.exists(path):
+                os.remove(path)
+    return [r for r in releases if all(r is not d for d in dropped)]
+
+
 # ---------------------------------------------------------------- page
 
 def render_list(releases):
@@ -259,8 +286,9 @@ def main():
                 os.remove(path)
     releases = [r for r in releases if r['id'] not in hidden]
     known = {r['id']: r for r in releases}
+    seen = set(known) | {i for r in releases for i in r.get('also', [])}
     for a in deezer_albums(cfg['deezer_artist']):
-        if a['id'] in hidden or a.get('record_type') == 'compile' or a['id'] in known:
+        if a['id'] in hidden or a.get('record_type') == 'compile' or a['id'] in seen:
             continue
         known[a['id']] = {'id': a['id'], 'title': a['title']}
         releases.append(known[a['id']])
@@ -287,6 +315,7 @@ def main():
     with ThreadPoolExecutor(6) as pool:
         list(pool.map(work, todo))
 
+    releases = merge_twins(releases)
     ready = sorted([r for r in releases if complete(r)], key=lambda r: (r['date'], r['id']), reverse=True)
     pending = [r for r in releases if not complete(r)]
     os.makedirs(os.path.dirname(DATA), exist_ok=True)
