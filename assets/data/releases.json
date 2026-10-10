@@ -1,0 +1,1256 @@
+[
+ {
+  "id": 1072543222,
+  "title": "What Remains",
+  "links": {
+   "spotify": "https://open.spotify.com/album/1Oyp3oqzARtxUdsxmNolJ3",
+   "deezer": "https://www.deezer.com/album/1072543222",
+   "apple": "https://music.apple.com/us/album/what-remains-single/6808641579"
+  },
+  "slug": "what-remains",
+  "with": [],
+  "date": "2026-10-07",
+  "label": "Rewoven",
+  "upc": "5054290224252",
+  "type": "Single",
+  "light": "#cea56e",
+  "deep": "#3b2b16"
+ },
+ {
+  "id": 1059959862,
+  "title": "Crawling",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4Ek61PdTLASqzcjeTEDugL",
+   "deezer": "https://www.deezer.com/album/1059959862",
+   "apple": "https://music.apple.com/us/album/crawling-single/6803991166"
+  },
+  "slug": "crawling",
+  "with": [],
+  "date": "2026-09-18",
+  "label": "Only For A Moment",
+  "upc": "5054290188059",
+  "type": "Single",
+  "light": "#ca8372",
+  "deep": "#3b1d16"
+ },
+ {
+  "id": 1029585272,
+  "title": "Drifting",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0GAnDw6ZYdEdD9UOh2rjzR",
+   "deezer": "https://www.deezer.com/album/1029585272",
+   "apple": "https://music.apple.com/us/album/drifting-single/6790816109"
+  },
+  "slug": "drifting",
+  "with": [],
+  "date": "2026-08-14",
+  "label": "Sekora Chill",
+  "upc": "5054290094602",
+  "type": "Single",
+  "light": "#d88d64",
+  "deep": "#3b2316"
+ },
+ {
+  "id": 962688891,
+  "title": "Gloam",
+  "links": {
+   "spotify": "https://open.spotify.com/album/2tl0Mn72QVVqfazzd0ebmL",
+   "deezer": "https://www.deezer.com/album/962688891",
+   "apple": "https://music.apple.com/us/album/gloam-single/1893866854"
+  },
+  "slug": "gloam",
+  "with": [],
+  "date": "2026-07-24",
+  "label": "Dawning Records",
+  "upc": "4065328874401",
+  "type": "Single",
+  "light": "#8086bc",
+  "deep": "#1c1f35"
+ },
+ {
+  "id": 1017714701,
+  "title": "Exhale",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3oWYI7hizJkuDHY9GQavqx",
+   "deezer": "https://www.deezer.com/album/1017714701",
+   "apple": "https://music.apple.com/us/album/exhale-single/6783638032"
+  },
+  "slug": "exhale",
+  "with": [
+   "Holen"
+  ],
+  "date": "2026-07-10",
+  "label": "Kontor Records",
+  "upc": "4255677176602",
+  "type": "Single",
+  "light": "#6ca3d0",
+  "deep": "#162b3b"
+ },
+ {
+  "id": 998743291,
+  "title": "Velvia",
+  "links": {
+   "spotify": "https://open.spotify.com/album/20q9TWHQt42gv1ubPvwfIT",
+   "deezer": "https://www.deezer.com/album/998743291",
+   "apple": "https://music.apple.com/us/album/velvia-single/6768897322"
+  },
+  "slug": "velvia",
+  "with": [
+   "Dokho"
+  ],
+  "date": "2026-06-09",
+  "label": "Monstercat",
+  "upc": "742779562210",
+  "type": "Single",
+  "light": "#d8ad64",
+  "deep": "#3b2e16"
+ },
+ {
+  "id": 957365941,
+  "title": "Figures",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4HHGVFRpDmhyfjTIPgmnGc",
+   "deezer": "https://www.deezer.com/album/957365941",
+   "apple": "https://music.apple.com/us/album/figures-single/1891775791"
+  },
+  "slug": "figures",
+  "with": [],
+  "date": "2026-05-08",
+  "label": "Only For A Moment",
+  "upc": "5054289847592",
+  "type": "Single",
+  "light": "#bdcd6f",
+  "deep": "#353b16"
+ },
+ {
+  "id": 932204401,
+  "title": "When Dreams Guide You",
+  "links": {
+   "spotify": "https://open.spotify.com/album/53zKLETKQz19oySn47SIDV",
+   "deezer": "https://www.deezer.com/album/932204401",
+   "apple": "https://music.apple.com/us/album/when-dreams-guide-you-single/1880723185"
+  },
+  "slug": "when-dreams-guide-you",
+  "with": [],
+  "date": "2026-04-03",
+  "label": "Only For A Moment",
+  "upc": "5054289746901",
+  "type": "Single",
+  "light": "#d4b368",
+  "deep": "#3b3016"
+ },
+ {
+  "id": 920092851,
+  "title": "Silt",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3VAboeoPhz0BdiYKjlqso1",
+   "deezer": "https://www.deezer.com/album/920092851",
+   "apple": "https://music.apple.com/us/album/silt-single/1877619699"
+  },
+  "slug": "silt",
+  "with": [],
+  "date": "2026-03-20",
+  "label": "Dawning Records",
+  "upc": "4065328835631",
+  "type": "Single",
+  "light": "#ac9390",
+  "deep": "#2f2423"
+ },
+ {
+  "id": 911369201,
+  "title": "Neverending Winter",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4wjLCxRc9jZwb6JnHYHuWm",
+   "deezer": "https://www.deezer.com/album/911369201",
+   "apple": "https://music.apple.com/us/album/neverending-winter-single/1872262409"
+  },
+  "slug": "neverending-winter",
+  "with": [
+   "Dokho"
+  ],
+  "date": "2026-03-06",
+  "label": "Spectrum Recordings",
+  "upc": "5054289641916",
+  "type": "Single",
+  "light": "#ce9b6e",
+  "deep": "#3b2816"
+ },
+ {
+  "id": 890710532,
+  "title": "Quiet Place / Rooms We Left",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6KBMADlL1cSxtVT0JdPKZO",
+   "deezer": "https://www.deezer.com/album/890710532",
+   "apple": "https://music.apple.com/us/album/quiet-place-rooms-we-left-ep/1864639939"
+  },
+  "slug": "quiet-place-rooms-we-left",
+  "with": [],
+  "date": "2026-02-04",
+  "label": "Rewoven",
+  "upc": "5054289544859",
+  "type": "EP",
+  "light": "#89aab4",
+  "deep": "#202e32"
+ },
+ {
+  "id": 874746722,
+  "title": "Umeral",
+  "links": {
+   "spotify": "https://open.spotify.com/album/7taALuuC058FPTtrc65soO",
+   "deezer": "https://www.deezer.com/album/874746722",
+   "apple": "https://music.apple.com/us/album/umeral-single/1860352950"
+  },
+  "slug": "umeral",
+  "with": [
+   "Dokho"
+  ],
+  "date": "2026-01-09",
+  "label": "MTAF",
+  "upc": "5054289559280",
+  "type": "Single",
+  "light": "#64a9d8",
+  "deep": "#162c3b"
+ },
+ {
+  "id": 864812682,
+  "title": "Grey Vail",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3okp16oG3Yu70hiJsD2AyU",
+   "deezer": "https://www.deezer.com/album/864812682",
+   "apple": "https://music.apple.com/us/album/grey-vail-single/1856283791"
+  },
+  "slug": "grey-vail",
+  "with": [],
+  "date": "2025-12-19",
+  "label": "Only For A Moment",
+  "upc": "5054289514906",
+  "type": "Single",
+  "light": "#c2ab7b",
+  "deep": "#382e1a"
+ },
+ {
+  "id": 849165702,
+  "title": "Faded",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3EDy0nCoUsj6VdwC6HVeyh",
+   "deezer": "https://www.deezer.com/album/849165702",
+   "apple": "https://music.apple.com/us/album/faded-single/1848632332"
+  },
+  "slug": "faded",
+  "with": [
+   "Stendahl"
+  ],
+  "date": "2025-12-03",
+  "label": "Rewoven",
+  "upc": "5054289337086",
+  "type": "Single",
+  "light": "#ca8772",
+  "deep": "#3b1f16"
+ },
+ {
+  "id": 842007752,
+  "title": "Almost Home",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4x2sTqHxdEzJSmBic7D9Pc",
+   "deezer": "https://www.deezer.com/album/842007752",
+   "apple": "https://music.apple.com/us/album/almost-home-single/1847696223"
+  },
+  "slug": "almost-home",
+  "with": [
+   "Seawayz"
+  ],
+  "date": "2025-11-14",
+  "label": "Only For A Moment",
+  "upc": "5054289403033",
+  "type": "Single",
+  "light": "#d8ae64",
+  "deep": "#3b2e16"
+ },
+ {
+  "id": 822636111,
+  "title": "afterlight",
+  "links": {
+   "spotify": "https://open.spotify.com/album/7DPRoxkoDm5dwzRWWcl57r",
+   "deezer": "https://www.deezer.com/album/822636111",
+   "apple": "https://music.apple.com/us/album/afterlight-single/1838606869"
+  },
+  "slug": "afterlight",
+  "with": [],
+  "date": "2025-10-17",
+  "label": "Oasis.",
+  "upc": "5054289296888",
+  "type": "Single",
+  "light": "#bd7f91",
+  "deep": "#361c23"
+ },
+ {
+  "id": 803937711,
+  "title": "the sun will rise again tomorrow",
+  "links": {
+   "spotify": "https://open.spotify.com/album/7H9KQ7YcFtUx9FjBXkeKXN",
+   "deezer": "https://www.deezer.com/album/803937711",
+   "apple": "https://music.apple.com/us/album/the-sun-will-rise-again-tomorrow-single/1831737657"
+  },
+  "slug": "the-sun-will-rise-again-tomorrow",
+  "with": [],
+  "date": "2025-09-12",
+  "label": "Oasis.",
+  "upc": "5054289239243",
+  "type": "Single",
+  "light": "#d88864",
+  "deep": "#3b2216"
+ },
+ {
+  "id": 790579411,
+  "title": "Finding / Fracture",
+  "links": {
+   "spotify": "https://open.spotify.com/album/47EC6QWHdG8GpHCbbC9MZ2",
+   "deezer": "https://www.deezer.com/album/790579411",
+   "apple": "https://music.apple.com/us/album/finding-fracture-single/1827583579"
+  },
+  "slug": "finding-fracture",
+  "with": [
+   "Heard Right"
+  ],
+  "date": "2025-08-13",
+  "label": "Enhanced Chill",
+  "upc": "663918388419",
+  "type": "Single",
+  "light": "#d87164",
+  "deep": "#3b1b16"
+ },
+ {
+  "id": 774619481,
+  "title": "Far From Nothing",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0szazcrrF6d2RLhVfLyZvr",
+   "deezer": "https://www.deezer.com/album/774619481",
+   "apple": "https://music.apple.com/us/album/far-from-nothing-single/1821460560"
+  },
+  "slug": "far-from-nothing",
+  "with": [
+   "Seawayz"
+  ],
+  "date": "2025-07-18",
+  "label": "Only For A Moment",
+  "upc": "5054289126208",
+  "type": "Single",
+  "light": "#bdb080",
+  "deep": "#36311c"
+ },
+ {
+  "id": 753744691,
+  "title": "Croquis",
+  "links": {
+   "spotify": "https://open.spotify.com/album/1zz7F65C223axExNrHIRuS",
+   "deezer": "https://www.deezer.com/album/753744691",
+   "apple": "https://music.apple.com/us/album/croquis-single/1813137293"
+  },
+  "slug": "croquis",
+  "with": [
+   "Blank Page"
+  ],
+  "date": "2025-06-27",
+  "label": "Hathōr",
+  "upc": "8718525363372",
+  "type": "Single",
+  "light": "#bc9b80",
+  "deep": "#35281c"
+ },
+ {
+  "id": 1057828472,
+  "title": "Âltyravyk",
+  "links": {
+   "spotify": "https://open.spotify.com/album/2W6dg5RG9fswp7wUlWt5fu",
+   "deezer": "https://www.deezer.com/album/1057828472",
+   "apple": "https://music.apple.com/us/album/a-ltyravyk-single/6802986762"
+  },
+  "slug": "altyravyk",
+  "with": [
+   "Polyline",
+   "OAI"
+  ],
+  "date": "2025-04-18",
+  "label": "NORR",
+  "upc": "4065328640693",
+  "type": "Single",
+  "light": "#c5c377",
+  "deep": "#393818"
+ },
+ {
+  "id": 1057836492,
+  "title": "The Same Melodic Guy",
+  "links": {
+   "spotify": "https://open.spotify.com/album/2gSG93JQnSe5EjOTdmGQQ4",
+   "deezer": "https://www.deezer.com/album/1057836492",
+   "apple": "https://music.apple.com/us/album/the-same-melodic-guy-single/6802987462"
+  },
+  "slug": "the-same-melodic-guy",
+  "with": [
+   "Polyline",
+   "OAI"
+  ],
+  "date": "2025-03-28",
+  "label": "NORR",
+  "upc": "4065328635897",
+  "type": "Single",
+  "light": "#64bdd8",
+  "deep": "#16333b"
+ },
+ {
+  "id": 661641261,
+  "title": "Horizon",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6ntS2aqlXfkHTm6SUxE7oC",
+   "deezer": "https://www.deezer.com/album/661641261",
+   "apple": "https://music.apple.com/us/album/horizon-single/1776077327"
+  },
+  "slug": "horizon",
+  "with": [
+   "Seawayz"
+  ],
+  "date": "2024-12-13",
+  "label": "Casual Jam Records",
+  "upc": "859796295769",
+  "type": "Single",
+  "light": "#64c0d8",
+  "deep": "#16343b"
+ },
+ {
+  "id": 661623951,
+  "title": "Never Look Back",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3AutQfrGgrQa9JaKH3Faoj",
+   "deezer": "https://www.deezer.com/album/661623951",
+   "apple": "https://music.apple.com/us/album/never-look-back-single/1776067856"
+  },
+  "slug": "never-look-back",
+  "with": [
+   "Seawayz"
+  ],
+  "date": "2024-11-15",
+  "label": "Casual Jam Records",
+  "upc": "859796293468",
+  "type": "Single",
+  "light": "#d86664",
+  "deep": "#3b1716"
+ },
+ {
+  "id": 637957441,
+  "title": "Momento de Amore",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0KEpxXgYmy3iePerZhCBPs",
+   "deezer": "https://www.deezer.com/album/637957441",
+   "apple": "https://music.apple.com/us/album/momento-de-amore-single/1766252102"
+  },
+  "slug": "momento-de-amore",
+  "with": [
+   "Ra5im"
+  ],
+  "date": "2024-10-04",
+  "label": "Hathōr",
+  "upc": "8718525340984",
+  "type": "Single",
+  "light": "#d86469",
+  "deep": "#3b1618"
+ },
+ {
+  "id": 596765982,
+  "title": "Let It Fall / Roads",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3TSB39DlUHDSld4EAdALbi",
+   "deezer": "https://www.deezer.com/album/596765982",
+   "apple": "https://music.apple.com/us/album/let-it-fall-roads-ep/1750256652"
+  },
+  "slug": "let-it-fall-roads",
+  "with": [
+   "Melarmony",
+   "Ayli Een"
+  ],
+  "date": "2024-07-03",
+  "label": "Rewoven",
+  "upc": "5054288274788",
+  "type": "EP",
+  "light": "#bd8c7f",
+  "deep": "#36211c"
+ },
+ {
+  "id": 619563271,
+  "title": "Antecedents",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5MJel4KRk8h1wfLrPueoBd",
+   "deezer": "https://www.deezer.com/album/619563271",
+   "apple": "https://music.apple.com/us/album/antecedents-single/1759031380"
+  },
+  "slug": "antecedents",
+  "with": [],
+  "date": "2024-06-21",
+  "label": "Sekora",
+  "upc": "196922991783",
+  "type": "Single",
+  "light": "#d8a664",
+  "deep": "#3b2b16"
+ },
+ {
+  "id": 578261741,
+  "title": "Desert Of Hopes",
+  "links": {
+   "spotify": "https://open.spotify.com/album/74hXz003jvmJh5xaPJk25C",
+   "deezer": "https://www.deezer.com/album/578261741",
+   "apple": "https://music.apple.com/us/album/desert-of-hopes-single/1743224844"
+  },
+  "slug": "desert-of-hopes",
+  "with": [
+   "Serra 9"
+  ],
+  "date": "2024-05-24",
+  "label": "Sommersville Records",
+  "upc": "5054288189129",
+  "type": "Single",
+  "light": "#d8d264",
+  "deep": "#3b3916"
+ },
+ {
+  "id": 616296582,
+  "title": "The Spark",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4JFusw7wneVK0Pkxw74a2d",
+   "deezer": "https://www.deezer.com/album/616296582",
+   "apple": "https://music.apple.com/us/album/the-spark-single/1757612804"
+  },
+  "slug": "the-spark",
+  "with": [
+   "Light Below"
+  ],
+  "date": "2023-12-29",
+  "label": "Sekora",
+  "upc": "196922746116",
+  "type": "Single",
+  "light": "#d87964",
+  "deep": "#3b1d16"
+ },
+ {
+  "id": 616296462,
+  "title": "Julia",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4GxeRfsSq2Kim8u2Ynr74P",
+   "deezer": "https://www.deezer.com/album/616296462",
+   "apple": "https://music.apple.com/us/album/julia-single/1757611713"
+  },
+  "slug": "julia",
+  "with": [
+   "Light Below"
+  ],
+  "date": "2023-12-01",
+  "label": "Sekora",
+  "upc": "196922704536",
+  "type": "Single",
+  "light": "#d86484",
+  "deep": "#3b1621"
+ },
+ {
+  "id": 498638631,
+  "title": "Floral Dance, Pt. 3",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4ClyAZoWnuvlS3pvuGzplY",
+   "deezer": "https://www.deezer.com/album/498638631",
+   "apple": "https://music.apple.com/us/album/floral-dance-pt-3-single/1711341542"
+  },
+  "slug": "floral-dance-pt-3",
+  "with": [
+   "NevadaSYSTEM",
+   "Qian Qiao"
+  ],
+  "date": "2023-11-10",
+  "label": "VASA Records",
+  "upc": "198089881402",
+  "type": "Single",
+  "light": "#65bad7",
+  "deep": "#16323b"
+ },
+ {
+  "id": 478019065,
+  "title": "Ephemeral",
+  "links": {
+   "spotify": "https://open.spotify.com/album/65bj7QmttSyl14UIMBGyKJ",
+   "deezer": "https://www.deezer.com/album/478019065",
+   "apple": "https://music.apple.com/us/album/ephemeral-single/1703293765"
+  },
+  "slug": "ephemeral",
+  "with": [
+   "OAI"
+  ],
+  "date": "2023-09-13",
+  "label": "Colorize (Enhanced)",
+  "upc": "5054287629015",
+  "type": "Single",
+  "light": "#d8ab64",
+  "deep": "#3b2d16"
+ },
+ {
+  "id": 432444247,
+  "title": "Wait",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4BIovzQyTuOIxOcEMCHXcs",
+   "deezer": "https://www.deezer.com/album/432444247",
+   "apple": "https://music.apple.com/us/album/wait-single/1683505249"
+  },
+  "slug": "wait",
+  "with": [
+   "Seawayz"
+  ],
+  "date": "2023-06-16",
+  "label": "chill that!",
+  "upc": "197188722425",
+  "type": "Single",
+  "light": "#647ad8",
+  "deep": "#161d3b"
+ },
+ {
+  "id": 617359871,
+  "title": "Till Morning Light / Pictures Of You",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0XCX1WeyZyOJx7DU1gYk6t",
+   "deezer": "https://www.deezer.com/album/617359871",
+   "apple": "https://music.apple.com/us/album/till-morning-light-pictures-of-you-single/1759387698"
+  },
+  "slug": "till-morning-light-pictures-of-you",
+  "with": [],
+  "date": "2023-06-02",
+  "label": "Sekora",
+  "upc": "196922465796",
+  "type": "Single",
+  "light": "#70ccc8",
+  "deep": "#163b39"
+ },
+ {
+  "id": 431415677,
+  "title": "Falling Away",
+  "links": {
+   "spotify": "https://open.spotify.com/album/24oM8UXBlqIdhoYoScSjOc",
+   "deezer": "https://www.deezer.com/album/431415677",
+   "apple": "https://music.apple.com/us/album/falling-away-single/1680721449"
+  },
+  "slug": "falling-away",
+  "with": [
+   "Phonic Youth"
+  ],
+  "date": "2023-05-25",
+  "label": "Kontor Records",
+  "upc": "4255677104094",
+  "type": "Single",
+  "light": "#d8646e",
+  "deep": "#3b161a"
+ },
+ {
+  "id": 617359831,
+  "title": "Pictures Of You",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0ft9TsZ9Bfs1q9scHqTIuM",
+   "deezer": "https://www.deezer.com/album/617359831",
+   "apple": "https://music.apple.com/us/album/pictures-of-you-single/1758074618"
+  },
+  "slug": "pictures-of-you",
+  "with": [],
+  "date": "2023-05-12",
+  "label": "Sekora",
+  "upc": "196922445040",
+  "type": "Single",
+  "light": "#b764d8",
+  "deep": "#31163b"
+ },
+ {
+  "id": 397082377,
+  "title": "Road to Kuala",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6nSYRfLjmnC04SL9hSnQsE",
+   "deezer": "https://www.deezer.com/album/397082377",
+   "apple": "https://music.apple.com/us/album/road-to-kuala-single/1665681118"
+  },
+  "slug": "road-to-kuala",
+  "with": [],
+  "date": "2023-03-03",
+  "label": "LNG Records",
+  "upc": "8718525283366",
+  "type": "Single",
+  "light": "#a271cb",
+  "deep": "#2b163b"
+ },
+ {
+  "id": 382140787,
+  "title": "Glaciers EP",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0cxrPihKqj6fzQbPumIxeW",
+   "deezer": "https://www.deezer.com/album/382140787",
+   "apple": "https://music.apple.com/us/album/glaciers-ep/1657373348"
+  },
+  "slug": "glaciers-ep",
+  "with": [],
+  "date": "2023-02-03",
+  "label": "Hathōr",
+  "upc": "8718525280327",
+  "type": "EP",
+  "light": "#7cb9c0",
+  "deep": "#1b3437"
+ },
+ {
+  "id": 550689602,
+  "title": "Enough",
+  "links": {
+   "spotify": "https://open.spotify.com/album/7sjJUvbyZdT4KwocKe0cS8",
+   "deezer": "https://www.deezer.com/album/550689602",
+   "apple": "https://music.apple.com/us/album/enough-single/1732035047"
+  },
+  "slug": "enough",
+  "with": [
+   "Heard Right"
+  ],
+  "date": "2022-12-02",
+  "label": "Where The Heart Is",
+  "upc": "8720765586589",
+  "type": "Single",
+  "light": "#af7ac2",
+  "deep": "#301a38"
+ },
+ {
+  "id": 367225277,
+  "title": "Different",
+  "links": {
+   "spotify": "https://open.spotify.com/album/568K9K7mWXC3FDBcPKQfb5",
+   "deezer": "https://www.deezer.com/album/367225277",
+   "apple": "https://music.apple.com/us/album/different-single/1646859661"
+  },
+  "slug": "different",
+  "with": [
+   "OAI"
+  ],
+  "date": "2022-10-21",
+  "label": "Monstercat",
+  "upc": "742779545558",
+  "type": "Single",
+  "light": "#d88564",
+  "deep": "#3b2116"
+ },
+ {
+  "id": 339151347,
+  "title": "Anna",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5zFicqaCzRszFnV8wl0Ipz",
+   "deezer": "https://www.deezer.com/album/339151347",
+   "apple": "https://music.apple.com/us/album/anna-ep/1634888495"
+  },
+  "slug": "anna",
+  "with": [
+   "Astroleaf"
+  ],
+  "date": "2022-07-29",
+  "label": "Monstercat",
+  "upc": "742779544469",
+  "type": "EP",
+  "light": "#d47d68",
+  "deep": "#3b1e16"
+ },
+ {
+  "id": 336714497,
+  "title": "Without You",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3cTQmjSIfrPuU2EdZeHtiQ",
+   "deezer": "https://www.deezer.com/album/336714497",
+   "apple": "https://music.apple.com/us/album/without-you-single/1634854905"
+  },
+  "slug": "without-you",
+  "with": [
+   "Mango"
+  ],
+  "date": "2022-07-29",
+  "label": "The Soundgarden",
+  "upc": "853566189371",
+  "type": "Single",
+  "light": "#d3996a",
+  "deep": "#3b2716"
+ },
+ {
+  "id": 314487277,
+  "title": "Fate",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6Ec3ckbqacMSjrlWPzqzOc",
+   "deezer": "https://www.deezer.com/album/314487277",
+   "apple": "https://music.apple.com/us/album/fate-ep/1621282714"
+  },
+  "slug": "fate",
+  "with": [
+   "Jeremiah McKnight"
+  ],
+  "date": "2022-05-13",
+  "label": "UV",
+  "upc": "853566140457",
+  "type": "EP",
+  "light": "#64a0d8",
+  "deep": "#16293b"
+ },
+ {
+  "id": 296154092,
+  "title": "Granularity",
+  "links": {
+   "spotify": "https://open.spotify.com/album/1lKSJyDnyWMXoz4576Op9D",
+   "deezer": "https://www.deezer.com/album/296154092",
+   "apple": "https://music.apple.com/us/album/granularity-single/1610346426"
+  },
+  "slug": "granularity",
+  "with": [],
+  "date": "2022-04-29",
+  "label": "Hathōr",
+  "upc": "8718525253031",
+  "type": "Single",
+  "light": "#ca9f72",
+  "deep": "#3b2916"
+ },
+ {
+  "id": 309817597,
+  "title": "In My Hands",
+  "links": {
+   "spotify": "https://open.spotify.com/album/3U0Zx1JGLJF84QohhxArK6",
+   "deezer": "https://www.deezer.com/album/309817597",
+   "apple": "https://music.apple.com/us/album/in-my-hands-ep/1615838172"
+  },
+  "slug": "in-my-hands",
+  "with": [],
+  "date": "2022-04-13",
+  "label": "Monstercat",
+  "upc": "742779542809",
+  "type": "EP",
+  "light": "#d0a36d",
+  "deep": "#3b2b16"
+ },
+ {
+  "id": 297282542,
+  "title": "Late Hours / Patterns",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5ISRZSfT7Kk74e564UozWG",
+   "deezer": "https://www.deezer.com/album/297282542",
+   "apple": "https://music.apple.com/us/album/late-hours-patterns-ep/1610541729"
+  },
+  "slug": "late-hours-patterns",
+  "with": [
+   "Furcloud"
+  ],
+  "date": "2022-03-23",
+  "label": "Colorize (Enhanced)",
+  "upc": "5054286490999",
+  "type": "EP",
+  "light": "#d86471",
+  "deep": "#3b161b"
+ },
+ {
+  "id": 298958302,
+  "title": "Running Faster",
+  "links": {
+   "spotify": "https://open.spotify.com/album/1XRiyMmGXUtzboy9peGHoe",
+   "deezer": "https://www.deezer.com/album/298958302",
+   "apple": "https://music.apple.com/us/album/running-faster-ep/1609462987"
+  },
+  "slug": "running-faster",
+  "with": [
+   "Seawayz"
+  ],
+  "date": "2022-03-02",
+  "label": "Monstercat",
+  "upc": "742779541802",
+  "type": "EP",
+  "light": "#d87f64",
+  "deep": "#3b1f16"
+ },
+ {
+  "id": 290342792,
+  "title": "Alfaragh",
+  "links": {
+   "spotify": "https://open.spotify.com/album/451T8pdsrf7OnXkAWvt920",
+   "deezer": "https://www.deezer.com/album/290342792",
+   "apple": "https://music.apple.com/us/album/alfaragh-single/1606914498"
+  },
+  "slug": "alfaragh",
+  "with": [
+   "Ra5im"
+  ],
+  "date": "2022-02-18",
+  "label": "Interplay Flow",
+  "upc": "5054286440581",
+  "type": "Single",
+  "light": "#64c3d8",
+  "deep": "#16353b"
+ },
+ {
+  "id": 288352702,
+  "title": "Give Me A Second",
+  "links": {
+   "spotify": "https://open.spotify.com/album/075F3FRDl5aFv3PJBq8id0",
+   "deezer": "https://www.deezer.com/album/288352702",
+   "apple": "https://music.apple.com/us/album/give-me-a-second-single/1603515749"
+  },
+  "slug": "give-me-a-second",
+  "with": [
+   "Ra5im"
+  ],
+  "date": "2022-01-21",
+  "label": "Monstercat",
+  "upc": "742779541024",
+  "type": "Single",
+  "light": "#bf997d",
+  "deep": "#37271b"
+ },
+ {
+  "id": 277574572,
+  "title": "The Illusion Of Impression / Stellar",
+  "links": {
+   "spotify": "https://open.spotify.com/album/2TJMmLrEu6ZT682C8jrKsZ",
+   "deezer": "https://www.deezer.com/album/277574572",
+   "apple": "https://music.apple.com/us/album/the-illusion-of-impression-stellar-ep/1598606903"
+  },
+  "slug": "the-illusion-of-impression-stellar",
+  "with": [
+   "Furcloud"
+  ],
+  "date": "2022-01-05",
+  "label": "Colorize (Enhanced)",
+  "upc": "5054286328827",
+  "type": "EP",
+  "light": "#d89864",
+  "deep": "#3b2716"
+ },
+ {
+  "id": 274422522,
+  "title": "Find You",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5haJvW7CtOB7823T9ByvCe",
+   "deezer": "https://www.deezer.com/album/274422522",
+   "apple": "https://music.apple.com/us/album/find-you-single/1593137714"
+  },
+  "slug": "find-you",
+  "with": [
+   "Lovlee"
+  ],
+  "date": "2021-11-24",
+  "label": "Monstercat",
+  "upc": "742779540317",
+  "type": "Single",
+  "light": "#d8ab64",
+  "deep": "#3b2d16"
+ },
+ {
+  "id": 533794302,
+  "title": "Immersed Remixed 01",
+  "links": {
+   "spotify": "https://open.spotify.com/album/2w9e0n28pV0ivMmD1fgaPg",
+   "deezer": "https://www.deezer.com/album/533794302",
+   "apple": "https://music.apple.com/us/album/immersed-remixed-01-ep/1725319805"
+  },
+  "slug": "immersed-remixed-01",
+  "with": [
+   "Jope",
+   "Furcloud"
+  ],
+  "date": "2021-11-11",
+  "label": "Immersed",
+  "upc": "8720623490027",
+  "type": "EP",
+  "light": "#8f9ead",
+  "deep": "#23292f"
+ },
+ {
+  "id": 508763671,
+  "title": "Your Love (Fløa and John Grand Remixes)",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4wTQ5fU5GLBhSx0SSbmIgW",
+   "deezer": "https://www.deezer.com/album/508763671",
+   "apple": "https://music.apple.com/us/album/your-love-fl%C3%B8a-and-john-grand-remixes-ep/1715083226"
+  },
+  "slug": "your-love-fla-and-john-grand-remixes",
+  "with": [
+   "iamMTN",
+   "John Grand"
+  ],
+  "date": "2021-10-29",
+  "label": "Elliptical Sun Recordings",
+  "upc": "195729005419",
+  "type": "EP",
+  "light": "#c664d8",
+  "deep": "#35163b"
+ },
+ {
+  "id": 260160202,
+  "title": "Manautee",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6R8bdRuAuKrbjuQ47aCPhA",
+   "deezer": "https://www.deezer.com/album/260160202",
+   "apple": "https://music.apple.com/us/album/manautee-single/1585442245"
+  },
+  "slug": "manautee",
+  "with": [
+   "Forty Cats"
+  ],
+  "date": "2021-09-24",
+  "label": "Monstercat",
+  "upc": "742779539489",
+  "type": "Single",
+  "light": "#6ad1d2",
+  "deep": "#163b3b"
+ },
+ {
+  "id": 611664782,
+  "title": "Phosphene",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5jhBypOHGN8HUjSCwmuIQ2",
+   "deezer": "https://www.deezer.com/album/611664782",
+   "apple": "https://music.apple.com/us/album/phosphene-single/1755796018"
+  },
+  "slug": "phosphene",
+  "with": [
+   "Scolario"
+  ],
+  "date": "2021-09-03",
+  "label": "Sekora",
+  "upc": "5059806115246",
+  "type": "Single",
+  "light": "#64add8",
+  "deep": "#162e3b"
+ },
+ {
+  "id": 253433452,
+  "title": "Goodbye",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0791dBAjBJXcZ9YohzlnN6",
+   "deezer": "https://www.deezer.com/album/253433452",
+   "apple": "https://music.apple.com/us/album/goodbye-ep/1579962003"
+  },
+  "slug": "goodbye",
+  "with": [
+   "Spectorsonic"
+  ],
+  "date": "2021-08-25",
+  "label": "Monstercat",
+  "upc": "742779538772",
+  "type": "EP",
+  "light": "#d8b964",
+  "deep": "#3b3116"
+ },
+ {
+  "id": 243066992,
+  "title": "Memories",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6yvgLwWEP0dI6nlV797Ruy",
+   "deezer": "https://www.deezer.com/album/243066992",
+   "apple": "https://music.apple.com/us/album/memories-single/1575771447"
+  },
+  "slug": "memories",
+  "with": [
+   "Scolario"
+  ],
+  "date": "2021-07-30",
+  "label": "PRGRSSN Records",
+  "upc": "5054286026648",
+  "type": "Single",
+  "light": "#cf9c6d",
+  "deep": "#3b2816"
+ },
+ {
+  "id": 236576892,
+  "title": "Insight",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6LmzJm8tz0S1H3hF4K0a5M",
+   "deezer": "https://www.deezer.com/album/236576892",
+   "apple": "https://music.apple.com/us/album/insight-ep/1571924802"
+  },
+  "slug": "insight",
+  "with": [
+   "Heard Right"
+  ],
+  "date": "2021-07-16",
+  "label": "Purified Records",
+  "upc": "7640130765689",
+  "type": "EP",
+  "light": "#64bcd8",
+  "deep": "#16323b"
+ },
+ {
+  "id": 533794182,
+  "title": "Early Hours",
+  "links": {
+   "spotify": "https://open.spotify.com/album/2sNjRj2XFOFkMQinJTofZW",
+   "deezer": "https://www.deezer.com/album/533794182",
+   "apple": "https://music.apple.com/us/album/early-hours-single/1725310278"
+  },
+  "slug": "early-hours",
+  "with": [
+   "Furcloud"
+  ],
+  "date": "2021-06-24",
+  "label": "Immersed",
+  "upc": "8720205813312",
+  "type": "Single",
+  "light": "#86a0b6",
+  "deep": "#1f2a33"
+ },
+ {
+  "id": 227994792,
+  "title": "Mirrals",
+  "links": {
+   "spotify": "https://open.spotify.com/album/08lODROSlvVKpRInIRLxN2",
+   "deezer": "https://www.deezer.com/album/227994792",
+   "apple": "https://music.apple.com/us/album/mirrals-single/1566136410"
+  },
+  "slug": "mirrals",
+  "with": [],
+  "date": "2021-05-14",
+  "label": "AVA Deep",
+  "upc": "8718525225892",
+  "type": "Single",
+  "light": "#6da6cf",
+  "deep": "#162c3b"
+ },
+ {
+  "id": 611664572,
+  "title": "Fragments Of The Past",
+  "links": {
+   "spotify": "https://open.spotify.com/album/6Ejptn3GBAG56DlSIASJTx",
+   "deezer": "https://www.deezer.com/album/611664572",
+   "apple": "https://music.apple.com/us/album/fragments-of-the-past-ep/1755794551"
+  },
+  "slug": "fragments-of-the-past",
+  "with": [],
+  "date": "2021-04-30",
+  "label": "Sekora",
+  "upc": "5059805541640",
+  "type": "EP",
+  "light": "#d8648c",
+  "deep": "#3b1623"
+ },
+ {
+  "id": 197534932,
+  "title": "Under",
+  "links": {
+   "spotify": "https://open.spotify.com/album/7r1RbX4reKkEMNlg57jGo5",
+   "deezer": "https://www.deezer.com/album/197534932",
+   "apple": "https://music.apple.com/us/album/under-ep/1547429424"
+  },
+  "slug": "under",
+  "with": [],
+  "date": "2021-01-29",
+  "label": "PRGRSSN Records",
+  "upc": "5054285584958",
+  "type": "EP",
+  "light": "#64bcd8",
+  "deep": "#16323b"
+ },
+ {
+  "id": 170936492,
+  "title": "Control",
+  "links": {
+   "spotify": "https://open.spotify.com/album/0I0qC2KiTQUme4eECZyBsh",
+   "deezer": "https://www.deezer.com/album/170936492",
+   "apple": "https://music.apple.com/us/album/control-ep/1530235782"
+  },
+  "slug": "control",
+  "with": [],
+  "date": "2020-09-11",
+  "label": "Figura Music",
+  "upc": "5054285333006",
+  "type": "EP",
+  "light": "#d8cb64",
+  "deep": "#3b3716"
+ },
+ {
+  "id": 169155822,
+  "title": "Light Above Us",
+  "links": {
+   "spotify": "https://open.spotify.com/album/1ju5FmnoaoDg0B6wLsW6o8",
+   "deezer": "https://www.deezer.com/album/169155822",
+   "apple": "https://music.apple.com/us/album/light-above-us-ep/1526895863"
+  },
+  "slug": "light-above-us",
+  "with": [
+   "Idy Ramy"
+  ],
+  "date": "2020-08-28",
+  "label": "Monstercat",
+  "upc": "703980550267",
+  "type": "EP",
+  "light": "#64d8be",
+  "deep": "#163b33"
+ },
+ {
+  "id": 155762722,
+  "title": "Saw District",
+  "links": {
+   "spotify": "https://open.spotify.com/album/00CjARFcOhgxPDzH6A2Lb6",
+   "deezer": "https://www.deezer.com/album/155762722",
+   "apple": "https://music.apple.com/us/album/saw-district-single/1519413832"
+  },
+  "slug": "saw-district",
+  "with": [
+   "OAI"
+  ],
+  "date": "2020-06-19",
+  "label": "Zerothree",
+  "upc": "5052075702513",
+  "type": "Single",
+  "light": "#b56ece",
+  "deep": "#32163b"
+ },
+ {
+  "id": 150958512,
+  "title": "Unified Vol.12",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5NYcBAf1RqUFewK1sfcOqV",
+   "deezer": "https://www.deezer.com/album/150958512",
+   "apple": "https://music.apple.com/us/album/unified-vol-12-ep/1515569510"
+  },
+  "slug": "unified-vol-12",
+  "with": [
+   "OAI",
+   "Sonic Union",
+   "MXV"
+  ],
+  "date": "2020-06-19",
+  "label": "Zerothree",
+  "upc": "5052075702469",
+  "type": "EP",
+  "light": "#b56ece",
+  "deep": "#32163b"
+ },
+ {
+  "id": 503829061,
+  "title": "Thanks for All My Dear",
+  "links": {
+   "spotify": "https://open.spotify.com/album/5qxxZjfezjuj9JZufAZQJg",
+   "deezer": "https://www.deezer.com/album/503829061",
+   "apple": "https://music.apple.com/us/album/thanks-for-all-my-dear-single/1713193357"
+  },
+  "slug": "thanks-for-all-my-dear",
+  "with": [],
+  "date": "2020-05-11",
+  "label": "Mercurial Tones",
+  "upc": "853565807085",
+  "type": "Single",
+  "light": "#c89374",
+  "deep": "#3a2417"
+ },
+ {
+  "id": 133346352,
+  "title": "Stars Around You",
+  "links": {
+   "spotify": "https://open.spotify.com/album/4pi8ctYhP0sRyOToo4wmOs",
+   "deezer": "https://www.deezer.com/album/133346352",
+   "apple": "https://music.apple.com/us/album/stars-around-you-single/1500210788"
+  },
+  "slug": "stars-around-you",
+  "with": [
+   "Glaue"
+  ],
+  "date": "2020-03-12",
+  "label": "Emergent Textures",
+  "upc": "853565788384",
+  "type": "Single",
+  "light": "#649ed8",
+  "deep": "#16293b"
+ }
+]

@@ -1,0 +1,48 @@
+# Brings the Music page up to date with new releases once a day, and on request from the Actions
+# tab (Run workflow). tools/releases/update.py only adds what is new; when nothing changed, nothing
+# is committed. Spotify links for new releases need the repository secrets SPOTIFY_CLIENT_ID and
+# SPOTIFY_CLIENT_SECRET (a free app at developer.spotify.com); without them a new release gets its
+# Apple Music and Deezer links and the page offers no Spotify player for it.
+name: Releases
+
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: releases
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: ImageMagick
+        run: command -v magick || command -v convert || (sudo apt-get update && sudo apt-get install -y imagemagick)
+
+      - name: Update releases
+        env:
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+        run: python3 tools/releases/update.py | tee "$RUNNER_TEMP/releases.log"
+
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git add -A assets/data assets/img/music music
+          if git diff --cached --quiet; then echo "No new releases."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Music: bring the releases up to date" -m "$(cat "$RUNNER_TEMP/releases.log")"
+          git push
+          # Pages builds from main; ask for a build in case a push by this token does not start one.
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" || true
