@@ -31,7 +31,7 @@ jobs:
         env:
           SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
           SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
-        run: python3 tools/releases/update.py | tee "$RUNNER_TEMP/releases.log"
+        run: set -o pipefail; python3 tools/releases/update.py | tee "$RUNNER_TEMP/releases.log"
 
       # The push starts the Pages build by itself (10.10: asking for another one as well made the
       # first of the two fail).
