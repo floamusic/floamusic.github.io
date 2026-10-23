@@ -10,7 +10,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=19">
+<link rel="stylesheet" href="assets/css/site.css?v=20">
 <link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
@@ -129,6 +129,7 @@
           </a>
 
           <div class="info floating is-on" id="info-floating">
+            <div class="looks-row"><h3>Looks</h3><span data-looks>Classic · Cassette</span></div>
             <div>
               <h3>What it does</h3>
               <p>FLOATING listens to what you just played and turns it into Memory: it holds the phrase while you decide what to do with it. The original stays untouched.</p>
@@ -146,7 +147,6 @@
               <h3>Status</h3>
               <dl>
                 <dt>Version</dt><dd>Beta <span data-floating-version>v0.5.0</span> <span class="state-inline ok">Available</span></dd>
-                <dt>Looks</dt><dd>Cassette · Classic</dd>
                 <dt>Formats</dt><dd>Audio Unit · VST3</dd>
                 <dt>Platforms</dt><dd>macOS (Apple Silicon) · Windows x64</dd>
               </dl>
@@ -336,29 +336,38 @@
 })();
 /* FLOATING's card opens on the classic look and turns into the cassette. Nothing of the cassette is
    fetched before the page has finished loading; the turn waits until its picture is decoded and the
-   card has been in view for four seconds, long enough to take in the classic first. Afterwards,
-   with a pointer, resting on the card brings the classic back and leaving it shows the cassette
-   again; keyboard focus does the same. Only a pointer that actually moves counts, as for picking a
-   world (scrolling under a resting pointer reports it entering). Reduced motion swaps the looks
-   without the fade (the stylesheet drops the transition). If the cassette cannot load, the classic
-   stays. */
+   card has been in view for four seconds, long enough to take in the classic first. With a pointer,
+   resting on the card brings the classic back while it stays (keyboard focus too); only a pointer
+   that actually moves counts, as for picking a world. Touch screens have no hover, so "Looks" in the
+   summary becomes a Classic / Cassette switch, which works everywhere: once someone presses it their
+   choice stands and the timer no longer turns the card. Reduced motion swaps the looks without the
+   fade (the stylesheet drops the transition). If the cassette cannot load, the classic stays and the
+   switch's Cassette is disabled. */
 (function () {
   var box = document.querySelector('[data-turn]');
   if (!box) return;
   var card = box.closest('.instrument'), next = box.querySelector('.next'), img = next.querySelector('img');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
   var pointer = window.matchMedia('(min-width: 961px) and (hover: hover)');
-  var ready = false, seen = false, timer = 0, due = false, held = false;
-  function show() { box.classList.toggle('is-turned', due && !held); }
+  var fetched = false, ready = false, seen = false, timer = 0, held = false, chosen = false;
+  var look = 'classic', buttons = [];
+  function show() {
+    var shown = ready && look === 'cassette' && !held ? 'cassette' : 'classic';
+    box.classList.toggle('is-turned', shown === 'cassette');
+    buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-look') === shown ? 'true' : 'false'); });
+  }
   function maybe() {
-    if (!ready || !seen || timer) return;
-    timer = setTimeout(function () { due = true; show(); }, still.matches ? 0 : 4000);
+    if (!ready || !seen || timer || chosen) return;
+    timer = setTimeout(function () { if (!chosen) { look = 'cassette'; show(); } }, still.matches ? 0 : 4000);
   }
   function fetchNext() {
+    if (fetched) return;
+    fetched = true;
     next.querySelectorAll('[data-srcset]').forEach(function (el) { el.srcset = el.getAttribute('data-srcset'); });
     img.src = img.getAttribute('data-src');
-    var done = function () { ready = true; maybe(); };
-    if (img.decode) img.decode().then(done, function () {}); else img.onload = done;
+    var done = function () { ready = true; show(); maybe(); };
+    var failed = function () { buttons.forEach(function (b) { if (b.getAttribute('data-look') === 'cassette') b.disabled = true; }); };
+    if (img.decode) img.decode().then(done, failed); else { img.onload = done; img.onerror = failed; }
   }
   if (document.readyState === 'complete') fetchNext(); else window.addEventListener('load', fetchNext);
   if ('IntersectionObserver' in window) {
@@ -377,6 +386,24 @@
   card.addEventListener('mouseleave', function () { hold(false); });
   card.addEventListener('focus', function () { if (pointer.matches) hold(true); });
   card.addEventListener('blur', function () { hold(false); });
+
+  var dd = document.querySelector('[data-looks]');
+  if (dd) {
+    var group = document.createElement('span');
+    group.className = 'looks'; group.setAttribute('role', 'group'); group.setAttribute('aria-label', 'Look shown on the FLOATING card');
+    [['classic', 'Classic'], ['cassette', 'Cassette']].forEach(function (l) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = l[1]; b.setAttribute('data-look', l[0]);
+      b.addEventListener('click', function () {
+        chosen = true; clearTimeout(timer); look = l[0];
+        if (look === 'cassette') fetchNext();
+        show();
+      });
+      buttons.push(b); group.appendChild(b);
+    });
+    dd.textContent = ''; dd.appendChild(group);
+    show();
+  }
 })();
 /* FLOATING's current version, read from its site's latest release and kept for an hour, so
    repeat visits do not spend GitHub's per-visitor request allowance (a refused request shows as

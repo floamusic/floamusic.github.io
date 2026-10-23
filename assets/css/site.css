@@ -278,6 +278,21 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .info.floating .flow li { border-color: var(--fl-line); }
 .info.floating b, .info.floating .go { color: var(--fl-ink); }
 .info.floating .state-inline { background: rgba(255, 90, 44, .16); color: #ff8a66; }
+/* "Looks" as a Classic / Cassette switch for FLOATING's card (built by index.html's script). It
+   opens the summary, so on a phone it sits right under the card it changes. */
+.info .looks-row { grid-column: 1 / -1; display: flex; align-items: center; flex-wrap: wrap; gap: 10px 16px; }
+.info .looks-row h3 { margin: 0; }
+.looks { display: inline-flex; gap: 6px; flex-wrap: wrap; vertical-align: middle; }
+.looks button {
+  appearance: none; min-height: 32px; padding: 0 11px; border-radius: 6px; cursor: pointer;
+  font: 11px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase;
+  background: transparent; color: var(--fl-muted); border: 1px solid var(--fl-line);
+  transition: color .2s ease, background-color .2s ease, border-color .2s ease;
+}
+.looks button:hover:not(:disabled) { color: var(--fl-ink); border-color: #4a4a52; }
+.looks button[aria-pressed="true"] { background: rgba(255, 90, 44, .16); border-color: rgba(255, 90, 44, .4); color: #ff8a66; }
+.looks button:disabled { opacity: .4; cursor: default; }
+.looks button:focus-visible { outline-color: var(--fl-accent); }
 
 .info.konsoll { --rule: var(--konsoll-rule); color: var(--ko-ink); background: var(--ko-plate); border: 1px solid #c9c7bf; }
 .info.konsoll h3, .info.konsoll dt { color: var(--ko-muted); }
