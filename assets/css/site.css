@@ -219,10 +219,11 @@ h1 { font: 400 clamp(34px, 6vw, 68px)/1.04 var(--mono); letter-spacing: -.035em;
 .instrument .name { font: 400 clamp(18px, 2.3vw, 22px)/1 var(--mono); letter-spacing: .42em; margin-right: -.42em; }
 .instrument .kind { font: 11px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
 .instrument .shot { border-radius: 9px; width: 100%; }
-/* FLOATING's two looks: the cassette lies over the classic and fades in (index.html, data-turn). */
+/* FLOATING's two looks: the cassette lies over the classic and fades in, and out again while a
+   pointer rests on the card (index.html, data-turn). */
 .instrument .shots { position: relative; display: block; }
 .instrument .shots picture { display: block; }
-.instrument .shots .next { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out; }
+.instrument .shots .next { position: absolute; inset: 0; opacity: 0; transition: opacity 1.1s ease-in-out; }
 .instrument .shots .next img { height: 100%; }
 .instrument .shots.is-turned .next { opacity: 1; }
 .instrument .foot { align-self: end; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }

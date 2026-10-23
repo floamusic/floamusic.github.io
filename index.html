@@ -10,7 +10,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=18">
+<link rel="stylesheet" href="assets/css/site.css?v=19">
 <link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
@@ -336,18 +336,23 @@
 })();
 /* FLOATING's card opens on the classic look and turns into the cassette. Nothing of the cassette is
    fetched before the page has finished loading; the turn waits until its picture is decoded and the
-   card has been in view for a moment, and happens once. Reduced motion shows the cassette without
-   the fade (the stylesheet drops the transition). If the cassette cannot load, the classic stays. */
+   card has been in view for four seconds, long enough to take in the classic first. Afterwards,
+   with a pointer, resting on the card brings the classic back and leaving it shows the cassette
+   again; keyboard focus does the same. Only a pointer that actually moves counts, as for picking a
+   world (scrolling under a resting pointer reports it entering). Reduced motion swaps the looks
+   without the fade (the stylesheet drops the transition). If the cassette cannot load, the classic
+   stays. */
 (function () {
   var box = document.querySelector('[data-turn]');
   if (!box) return;
-  var next = box.querySelector('.next'), img = next.querySelector('img');
+  var card = box.closest('.instrument'), next = box.querySelector('.next'), img = next.querySelector('img');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var ready = false, seen = false, timer = 0;
-  function turn() { box.classList.add('is-turned'); }
+  var pointer = window.matchMedia('(min-width: 961px) and (hover: hover)');
+  var ready = false, seen = false, timer = 0, due = false, held = false;
+  function show() { box.classList.toggle('is-turned', due && !held); }
   function maybe() {
     if (!ready || !seen || timer) return;
-    timer = setTimeout(turn, still.matches ? 0 : 1500);
+    timer = setTimeout(function () { due = true; show(); }, still.matches ? 0 : 4000);
   }
   function fetchNext() {
     next.querySelectorAll('[data-srcset]').forEach(function (el) { el.srcset = el.getAttribute('data-srcset'); });
@@ -361,6 +366,17 @@
       if (entries[0].isIntersecting) { seen = true; io.disconnect(); maybe(); }
     }, { threshold: .6 }).observe(box);
   } else { seen = true; }
+
+  function hold(on) { if (held !== on) { held = on; show(); } }
+  var px = null, py = null;
+  card.addEventListener('mousemove', function (e) {
+    var moved = e.screenX !== px || e.screenY !== py;
+    px = e.screenX; py = e.screenY;
+    if (moved && pointer.matches) hold(true);
+  }, { passive: true });
+  card.addEventListener('mouseleave', function () { hold(false); });
+  card.addEventListener('focus', function () { if (pointer.matches) hold(true); });
+  card.addEventListener('blur', function () { hold(false); });
 })();
 /* FLOATING's current version, read from its site's latest release and kept for an hour, so
    repeat visits do not spend GitHub's per-visitor request allowance (a refused request shows as
