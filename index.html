@@ -10,7 +10,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=20">
+<link rel="stylesheet" href="assets/css/site.css?v=21">
 <link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
@@ -336,23 +336,21 @@
 })();
 /* FLOATING's card opens on the classic look and turns into the cassette. Nothing of the cassette is
    fetched before the page has finished loading; the turn waits until its picture is decoded and the
-   card has been in view for four seconds, long enough to take in the classic first. With a pointer,
-   resting on the card brings the classic back while it stays (keyboard focus too); only a pointer
-   that actually moves counts, as for picking a world. Touch screens have no hover, so "Looks" in the
-   summary becomes a Classic / Cassette switch, which works everywhere: once someone presses it their
-   choice stands and the timer no longer turns the card. Reduced motion swaps the looks without the
+   card has been in view for four seconds, long enough to take in the classic first. "Looks" in the
+   summary becomes a Classic / Cassette switch, the same on every screen (hover did it on desktops
+   once, but nobody finds a hover, and the card changed under a pointer on its way to open it):
+   once someone presses it their choice stands and the timer no longer turns the card. Reduced motion swaps the looks without the
    fade (the stylesheet drops the transition). If the cassette cannot load, the classic stays and the
    switch's Cassette is disabled. */
 (function () {
   var box = document.querySelector('[data-turn]');
   if (!box) return;
-  var card = box.closest('.instrument'), next = box.querySelector('.next'), img = next.querySelector('img');
+  var next = box.querySelector('.next'), img = next.querySelector('img');
   var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var pointer = window.matchMedia('(min-width: 961px) and (hover: hover)');
-  var fetched = false, ready = false, seen = false, timer = 0, held = false, chosen = false;
+  var fetched = false, ready = false, seen = false, timer = 0, chosen = false;
   var look = 'classic', buttons = [];
   function show() {
-    var shown = ready && look === 'cassette' && !held ? 'cassette' : 'classic';
+    var shown = ready && look === 'cassette' ? 'cassette' : 'classic';
     box.classList.toggle('is-turned', shown === 'cassette');
     buttons.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-look') === shown ? 'true' : 'false'); });
   }
@@ -375,17 +373,6 @@
       if (entries[0].isIntersecting) { seen = true; io.disconnect(); maybe(); }
     }, { threshold: .6 }).observe(box);
   } else { seen = true; }
-
-  function hold(on) { if (held !== on) { held = on; show(); } }
-  var px = null, py = null;
-  card.addEventListener('mousemove', function (e) {
-    var moved = e.screenX !== px || e.screenY !== py;
-    px = e.screenX; py = e.screenY;
-    if (moved && pointer.matches) hold(true);
-  }, { passive: true });
-  card.addEventListener('mouseleave', function () { hold(false); });
-  card.addEventListener('focus', function () { if (pointer.matches) hold(true); });
-  card.addEventListener('blur', function () { hold(false); });
 
   var dd = document.querySelector('[data-looks]');
   if (dd) {
