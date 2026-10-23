@@ -22,10 +22,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
+      # The runner image no longer carries ImageMagick. Its JPEG, WebP and BMP coders are in the core
+      # library; the recommended extras (Ghostscript, fonts, more coders) took the install to ten
+      # minutes (23.10), so they are left out.
       - name: ImageMagick
-        run: command -v magick || command -v convert || (sudo apt-get update && sudo apt-get install -y imagemagick)
+        run: command -v magick || command -v convert || (sudo apt-get update && sudo apt-get install -y --no-install-recommends imagemagick)
 
       - name: Update releases
         env:
