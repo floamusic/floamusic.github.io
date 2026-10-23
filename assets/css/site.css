@@ -59,6 +59,9 @@
 /* Pages on floamusic.github.io (this showcase, Music and the two instruments' own sites) cross-fade
    into one another where the browser can; all of them opt in, elsewhere the link just loads. */
 @media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }
+/* The bar sits in the same place on every site, so it is carried across as one piece instead of
+   fading out with the page. */
+.topbar { view-transition-name: topbar; }
 
 *, *::before, *::after { box-sizing: border-box; }
 /* The scrollbar has no track of its own and a translucent thumb, so it reads over KONSOLL's
@@ -82,13 +85,13 @@ a:hover { text-decoration-color: currentColor; }
 
 /* ---------- top bar: a dark rail so the links read over either world ---------- */
 .topbar { position: sticky; top: 0; z-index: 30; background: rgba(8, 9, 9, .74); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); border-bottom: 1px solid rgba(255, 255, 255, .06); }
-.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; flex-wrap: wrap; }
+.topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 62px; flex-wrap: wrap; }
 /* The Fløa wordmark (Floa logo for site/final), drawn in the logo's own light tone. */
 .brand { display: inline-flex; align-items: center; color: #d6d1e0; text-decoration: none; }
 /* Raised so the letters' body, not the tall f and l, centres on the nav's capitals. */
 .brand .logo { display: block; height: 22px; width: auto; transform: translateY(-2.5px); }
-.topnav { display: flex; gap: clamp(14px, 3vw, 30px); flex-wrap: wrap; }
-.topnav a { font: 12px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; padding-block: 8px; }
+.topnav { display: flex; gap: clamp(14px, 3vw, 28px); flex-wrap: wrap; }
+.topnav a { font: 11.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-muted); text-decoration: none; padding-block: 8px; }
 .topnav a:hover { color: var(--ink); }
 
 /* Phones: the bar stacks into two rows with room above, between and below; the links stay on
