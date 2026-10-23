@@ -10,7 +10,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=17">
+<link rel="stylesheet" href="assets/css/site.css?v=18">
 <link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
@@ -98,16 +98,30 @@
         <div class="slide floating" id="slide-floating">
           <a class="instrument floating is-picked" href="/floating-site/" data-pick="floating" aria-describedby="info-floating">
             <span class="head"><span class="name">FLOATING</span><span class="kind">Memory instrument</span></span>
-            <picture>
-              <source type="image/avif" sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
-                      srcset="assets/img/floating-1080.avif 1080w, assets/img/floating.avif 1920w, assets/img/floating@2x.avif 2560w">
-              <img class="shot"
-                   src="assets/img/floating.jpg?v=2"
-                   srcset="assets/img/floating-1080.jpg?v=2 1080w, assets/img/floating.jpg?v=2 1920w, assets/img/floating@2x.jpg?v=2 2560w"
-                   sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
-                   width="1920" height="1200"
-                   alt="FLOATING in its cassette look: a paper label with the held Memory in the window between two hubs, the HELD button lit orange, and the Memory Mode, Rate, Window, Shape and Mix knobs on the body below.">
-            </picture>
+            <!-- The classic look turns into the cassette once the card is in view: the cassette is fetched
+                 after the page has loaded and fades in over the classic. The classic render is moved
+                 down in two bands so its knobs and Atmosphere sit where the cassette's do (README). -->
+            <span class="shots" data-turn>
+              <picture>
+                <source type="image/avif" sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                        srcset="assets/img/floating-classic-1080.avif 1080w, assets/img/floating-classic.avif 1920w, assets/img/floating-classic@2x.avif 2560w">
+                <img class="shot"
+                     src="assets/img/floating-classic.jpg"
+                     srcset="assets/img/floating-classic-1080.jpg 1080w, assets/img/floating-classic.jpg 1920w, assets/img/floating-classic@2x.jpg 2560w"
+                     sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                     width="1920" height="1200"
+                     alt="FLOATING's two looks on one held Memory: the classic interface, the Memory drawn across the top and the HELD button lit orange, turns into the cassette look, a paper label with the Memory in the window between two hubs. The Memory Mode, Rate, Window, Shape and Mix knobs stay where they are.">
+              </picture>
+              <picture class="next">
+                <source type="image/avif" sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                        data-srcset="assets/img/floating-1080.avif 1080w, assets/img/floating.avif 1920w, assets/img/floating@2x.avif 2560w">
+                <img class="shot" alt="" decoding="async"
+                     data-src="assets/img/floating.jpg?v=2"
+                     data-srcset="assets/img/floating-1080.jpg?v=2 1080w, assets/img/floating.jpg?v=2 1920w, assets/img/floating@2x.jpg?v=2 2560w"
+                     sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                     width="1920" height="1200">
+              </picture>
+            </span>
             <span class="foot">
               <span class="status"><span class="dot" style="background: var(--fl-accent)" aria-hidden="true"></span>Beta · <span data-floating-version>v0.5.0</span> · available</span>
               <span class="open">Open FLOATING <span class="arrow" aria-hidden="true">→</span></span>
@@ -319,6 +333,34 @@
   if (swipe.addEventListener) swipe.addEventListener('change', layout); else swipe.addListener(layout);
   window.addEventListener('resize', function () { if (!queued && swipe.matches) { queued = true; requestAnimationFrame(follow); } }, { passive: true });
   if (swipe.matches) follow();
+})();
+/* FLOATING's card opens on the classic look and turns into the cassette. Nothing of the cassette is
+   fetched before the page has finished loading; the turn waits until its picture is decoded and the
+   card has been in view for a moment, and happens once. Reduced motion shows the cassette without
+   the fade (the stylesheet drops the transition). If the cassette cannot load, the classic stays. */
+(function () {
+  var box = document.querySelector('[data-turn]');
+  if (!box) return;
+  var next = box.querySelector('.next'), img = next.querySelector('img');
+  var still = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var ready = false, seen = false, timer = 0;
+  function turn() { box.classList.add('is-turned'); }
+  function maybe() {
+    if (!ready || !seen || timer) return;
+    timer = setTimeout(turn, still.matches ? 0 : 1500);
+  }
+  function fetchNext() {
+    next.querySelectorAll('[data-srcset]').forEach(function (el) { el.srcset = el.getAttribute('data-srcset'); });
+    img.src = img.getAttribute('data-src');
+    var done = function () { ready = true; maybe(); };
+    if (img.decode) img.decode().then(done, function () {}); else img.onload = done;
+  }
+  if (document.readyState === 'complete') fetchNext(); else window.addEventListener('load', fetchNext);
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries, io) {
+      if (entries[0].isIntersecting) { seen = true; io.disconnect(); maybe(); }
+    }, { threshold: .6 }).observe(box);
+  } else { seen = true; }
 })();
 /* FLOATING's current version, read from its site's latest release and kept for an hour, so
    repeat visits do not spend GitHub's per-visitor request allowance (a refused request shows as
