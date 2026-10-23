@@ -54,6 +54,9 @@
     var img = document.createElement('img');
     img.alt = ''; img.decoding = 'async'; img.draggable = false;
     img.width = 380; img.height = 380;
+    // WebP first (a third of the JPEG); a browser without it, or a cover the updater could not
+    // make one for yet, gets the JPEG.
+    img.onerror = function () { img.onerror = null; img.src = '../assets/img/music/' + r.slug + '.jpg'; };
     b.appendChild(img);
     b.addEventListener('click', function () { if (!dragged) choose(r.i); });
     stage.appendChild(b);
@@ -72,7 +75,7 @@
       b.style.pointerEvents = a < 4 ? '' : 'none';
       b.classList.toggle('is-on', a === 0);
       var img = b.firstChild;
-      if (a <= 3 && !img.getAttribute('src')) img.src = '../assets/img/music/' + R[i].slug + '.jpg';
+      if (a <= 3 && !img.getAttribute('src')) img.src = '../assets/img/music/' + R[i].slug + '.webp';
     });
   }
 
