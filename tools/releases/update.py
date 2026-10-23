@@ -4,7 +4,8 @@
 Deezer lists the releases (it carries the label, the other artists and the barcode). Each new one
 is then found on Apple Music by its barcode, which gives the cover at its original size and the
 Apple link, and on Spotify when SPOTIFY_CLIENT_ID / SPOTIFY_CLIENT_SECRET are set. Covers are only
-ever made smaller. The result goes to assets/data/releases.json, the covers to assets/img/music/,
+ever made smaller; the shelf's cover also goes out as WebP (about a third of the JPEG), which the
+page asks for first. The result goes to assets/data/releases.json, the covers to assets/img/music/,
 and the list of releases is written into music/index.html, where the page's script builds the
 shelf from it.
 
@@ -76,6 +77,18 @@ def make_jpeg(src, dst, size, quality):
     else:
         subprocess.run([MAGICK, src, '-resize', '%dx%d>' % (n, n), '-strip', '-quality', str(quality),
                         '-sampling-factor', '4:2:0', '-interlace', 'JPEG', dst], check=True, capture_output=True)
+
+
+def make_webp(src, dst, quality):
+    """The shelf's cover as WebP, made from its JPEG. Optional: when no tool here writes WebP the
+    page keeps showing the JPEG, and the next run that can make it does."""
+    for cmd in ([SIPS, '-s', 'format', 'webp', '-s', 'formatOptions', str(quality), src, '--out', dst] if SIPS else None,
+                [MAGICK, src, '-strip', '-quality', str(quality), dst] if MAGICK else None):
+        if cmd and subprocess.run(cmd, capture_output=True).returncode == 0 and os.path.exists(dst) and os.path.getsize(dst) > 0:
+            return True
+    if os.path.exists(dst):
+        os.remove(dst)
+    return False
 
 
 def tiny_pixels(src, tmp):
@@ -205,6 +218,8 @@ def fill(r, cfg, token, taken):
             else:
                 download(d['cover_xl'], src)
             make_jpeg(src, big, BIG, 82)
+            if os.path.exists(big[:-4] + '.webp'):  # made again from the new JPEG below
+                os.remove(big[:-4] + '.webp')
             make_jpeg(src, small, SMALL, 80)
             r['light'], r['deep'] = tones(tiny_pixels(src, tmp))
     return r['title']
@@ -230,7 +245,7 @@ def merge_twins(releases):
         groups[key] = groups[alt] = keep
         dropped.append(drop)
     for r in dropped:
-        for suffix in ('.jpg', '-s.jpg'):
+        for suffix in ('.jpg', '-s.jpg', '.webp'):
             path = os.path.join(IMG, r['slug'] + suffix)
             if os.path.exists(path):
                 os.remove(path)
@@ -280,7 +295,7 @@ def main():
     releases = json.load(open(DATA, encoding='utf-8')) if os.path.exists(DATA) else []
     hidden = set(cfg['hide'])
     for r in [r for r in releases if r['id'] in hidden]:  # hidden after it was shown: drop it and its covers
-        for suffix in ('.jpg', '-s.jpg'):
+        for suffix in ('.jpg', '-s.jpg', '.webp'):
             path = os.path.join(IMG, r.get('slug', '') + suffix)
             if r.get('slug') and os.path.exists(path):
                 os.remove(path)
@@ -316,6 +331,10 @@ def main():
         list(pool.map(work, todo))
 
     releases = merge_twins(releases)
+    for r in releases:  # WebP for every shelf cover that lacks one, new or from before
+        big = os.path.join(IMG, r['slug'] + '.jpg') if r.get('slug') else None
+        if big and complete(r) and not os.path.exists(big[:-4] + '.webp'):
+            make_webp(big, big[:-4] + '.webp', 80)
     ready = sorted([r for r in releases if complete(r)], key=lambda r: (r['date'], r['id']), reverse=True)
     pending = [r for r in releases if not complete(r)]
     os.makedirs(os.path.dirname(DATA), exist_ok=True)
