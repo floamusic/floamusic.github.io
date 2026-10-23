@@ -10,7 +10,7 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=21">
+<link rel="stylesheet" href="assets/css/site.css?v=22">
 <link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
@@ -395,11 +395,18 @@
 /* FLOATING's current version, read from its site's latest release and kept for an hour, so
    repeat visits do not spend GitHub's per-visitor request allowance (a refused request shows as
    a console error). The markup already carries a correct fallback, so a blocked or rate-limited
-   request leaves the page as it was. */
+   request leaves the page as it was. A tag older than the markup's is never shown: one kept from
+   before the page was refreshed for a release must not wind the number back (FLOATING's own pages
+   share this key and this rule). */
 (function () {
   var KEY = 'floa.floatingTag', HOUR = 3600000;
+  var els = document.querySelectorAll('[data-floating-version]');
+  function parts(t) { return t.match(/\d+/g).slice(0, 3).map(Number); }
   function show(tag) {
-    document.querySelectorAll('[data-floating-version]').forEach(function (el) { el.textContent = tag; });
+    if (!els.length) return;
+    var a = parts(tag), b = parts(els[0].textContent);
+    for (var i = 0; i < 3; i++) { if (a[i] !== b[i]) { if (a[i] < b[i]) return; break; } }
+    els.forEach(function (el) { el.textContent = tag; });
   }
   try {
     var kept = JSON.parse(localStorage.getItem(KEY) || 'null');
