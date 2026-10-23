@@ -10,12 +10,29 @@
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=16">
+<link rel="stylesheet" href="assets/css/site.css?v=17">
+<link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Fløa — FLOATING and KONSOLL">
 <meta property="og:description" content="Two instruments by Fløa. Audio Unit and VST3.">
-<meta property="og:image" content="assets/img/konsoll.jpg">
+<meta property="og:image" content="https://floamusic.github.io/assets/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://floamusic.github.io/">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@graph": [
+  {"@type": "WebSite", "name": "Fløa", "url": "https://floamusic.github.io/"},
+  {"@type": "SoftwareApplication", "name": "FLOATING", "url": "https://floamusic.github.io/floating-site/",
+   "description": "A capture-first memory instrument: it holds what you just played as a Memory to reshape, place into atmosphere and print back.",
+   "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows",
+   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Fløa"}},
+  {"@type": "SoftwareApplication", "name": "KONSOLL", "url": "https://floamusic.github.io/konsoll-site/",
+   "description": "A four-module multi-FX instrument: HEAT, SWAY, AIR and GRAIN, with Trace, Hold, Scenes and MACRO.",
+   "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS",
+   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Fløa"}}
+]}
+</script>
 </head>
 <body>
 
@@ -81,12 +98,16 @@
         <div class="slide floating" id="slide-floating">
           <a class="instrument floating is-picked" href="/floating-site/" data-pick="floating" aria-describedby="info-floating">
             <span class="head"><span class="name">FLOATING</span><span class="kind">Memory instrument</span></span>
-            <img class="shot"
-                 src="assets/img/floating.jpg"
-                 srcset="assets/img/floating-1080.jpg 1080w, assets/img/floating.jpg 1920w, assets/img/floating@2x.jpg 2560w"
-                 sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
-                 width="1920" height="1200"
-                 alt="The FLOATING interface: a held Memory drawn across the top, the HELD button lit orange, and Memory Mode, Rate, Window, Shape and Mix knobs below.">
+            <picture>
+              <source type="image/avif" sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                      srcset="assets/img/floating-1080.avif 1080w, assets/img/floating.avif 1920w, assets/img/floating@2x.avif 2560w">
+              <img class="shot"
+                   src="assets/img/floating.jpg?v=2"
+                   srcset="assets/img/floating-1080.jpg?v=2 1080w, assets/img/floating.jpg?v=2 1920w, assets/img/floating@2x.jpg?v=2 2560w"
+                   sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                   width="1920" height="1200"
+                   alt="FLOATING in its cassette look: a paper label with the held Memory in the window between two hubs, the HELD button lit orange, and the Memory Mode, Rate, Window, Shape and Mix knobs on the body below.">
+            </picture>
             <span class="foot">
               <span class="status"><span class="dot" style="background: var(--fl-accent)" aria-hidden="true"></span>Beta · <span data-floating-version>v0.5.0</span> · available</span>
               <span class="open">Open FLOATING <span class="arrow" aria-hidden="true">→</span></span>
@@ -111,6 +132,7 @@
               <h3>Status</h3>
               <dl>
                 <dt>Version</dt><dd>Beta <span data-floating-version>v0.5.0</span> <span class="state-inline ok">Available</span></dd>
+                <dt>Looks</dt><dd>Cassette · Classic</dd>
                 <dt>Formats</dt><dd>Audio Unit · VST3</dd>
                 <dt>Platforms</dt><dd>macOS (Apple Silicon) · Windows x64</dd>
               </dl>
@@ -122,12 +144,16 @@
         <div class="slide konsoll" id="slide-konsoll">
           <a class="instrument konsoll" href="/konsoll-site/" data-pick="konsoll" aria-describedby="info-konsoll">
             <span class="head"><img class="wordmark" src="assets/img/konsoll-wordmark.svg" width="128" height="22" alt="KONSOLL"><span class="kind">Multi-FX instrument</span></span>
-            <img class="shot"
-                 src="assets/img/konsoll.jpg?v=2"
-                 srcset="assets/img/konsoll-1080.jpg?v=2 1080w, assets/img/konsoll.jpg?v=2 1920w, assets/img/konsoll@2x.jpg?v=2 2560w"
-                 sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
-                 width="1920" height="1209"
+            <picture>
+              <source type="image/avif" sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                      srcset="assets/img/konsoll-1080.avif 1080w, assets/img/konsoll.avif 1920w, assets/img/konsoll@2x.avif 2560w">
+              <img class="shot"
+                   src="assets/img/konsoll.jpg?v=2"
+                   srcset="assets/img/konsoll-1080.jpg?v=2 1080w, assets/img/konsoll.jpg?v=2 1920w, assets/img/konsoll@2x.jpg?v=2 2560w"
+                   sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
+                   width="1920" height="1209"
                  alt="The KONSOLL interface playing the Backwards Halo preset: four modules, HEAT, SWAY, AIR and GRAIN, each with a coloured field and two knobs, above the Trace, Hold and Master sections.">
+            </picture>
             <span class="foot">
               <span class="status"><span class="dot" style="background: #6fbab5" aria-hidden="true"></span>Beta · v0.9.0 · soon</span>
               <span class="open">Open KONSOLL <span class="arrow" aria-hidden="true">→</span></span>

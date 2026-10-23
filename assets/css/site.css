@@ -56,6 +56,10 @@
   --ease: cubic-bezier(.16, 1, .3, 1);
 }
 
+/* Pages on floamusic.github.io (this showcase, Music and the two instruments' own sites) cross-fade
+   into one another where the browser can; all of them opt in, elsewhere the link just loads. */
+@media (prefers-reduced-motion: no-preference) { @view-transition { navigation: auto; } }
+
 *, *::before, *::after { box-sizing: border-box; }
 /* The scrollbar has no track of its own and a translucent thumb, so it reads over KONSOLL's
    light stone and the graphite floor alike (05.10: a dark track flashed over the light world
@@ -379,3 +383,7 @@ td .sub { display: block; margin-top: 6px; font-size: 13px; color: var(--ink-low
 footer { background: var(--floor); border-top: 1px solid var(--line-soft); padding-block: 28px 40px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font: 12px/1.6 var(--mono); color: var(--ink-low); letter-spacing: .04em; }
 footer a { color: var(--ink-muted); }
+
+/* ---------- 404 ---------- */
+.lost { padding-block: clamp(72px, 12vw, 160px) clamp(56px, 8vw, 104px); }
+.lost h1 { margin-bottom: 18px; }
