@@ -3,21 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Fløa — FLOATING and KONSOLL</title>
-<meta name="description" content="Instruments by Fløa: FLOATING, a capture-first memory instrument, and KONSOLL, a four-module multi-FX that moves with the track. Audio Unit and VST3.">
+<title>Fløa — FLOATING</title>
+<meta name="description" content="FLOATING by Fløa: a capture-first memory instrument. Audio Unit and VST3.">
 <meta name="theme-color" content="#111312">
 <link rel="preload" href="assets/fonts/GeistMono-Regular.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
-<link rel="stylesheet" href="assets/css/site.css?v=22">
+<link rel="stylesheet" href="assets/css/site.css?v=23">
 <link rel="canonical" href="https://floamusic.github.io/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Fløa — FLOATING and KONSOLL">
-<meta property="og:description" content="Two instruments by Fløa. Audio Unit and VST3.">
-<meta property="og:image" content="https://floamusic.github.io/assets/img/og.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:title" content="Fløa — FLOATING">
+<meta property="og:description" content="A memory instrument by Fløa. Audio Unit and VST3.">
+<meta property="og:image" content="https://floamusic.github.io/assets/img/og.jpg?v=2">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1000">
 <meta property="og:url" content="https://floamusic.github.io/">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
@@ -26,10 +26,6 @@
   {"@type": "SoftwareApplication", "name": "FLOATING", "url": "https://floamusic.github.io/floating-site/",
    "description": "A capture-first memory instrument: it keeps the last minute of what it hears and holds the moment you choose as a Memory to reshape, place into atmosphere and print back.",
    "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS, Windows",
-   "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Fløa"}},
-  {"@type": "SoftwareApplication", "name": "KONSOLL", "url": "https://floamusic.github.io/konsoll-site/",
-   "description": "A four-module multi-FX instrument: HEAT, SWAY, AIR and GRAIN, with Trace, Hold, Scenes and MACRO.",
-   "applicationCategory": "MultimediaApplication", "operatingSystem": "macOS",
    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "author": {"@type": "Person", "name": "Fløa"}}
 ]}
 </script>
@@ -53,22 +49,12 @@
 <main id="top">
 
 <div class="stage" id="stage" data-world="floating">
-  <!-- Two worlds side by side on one wide strip: FLOATING's black and ember on the left, KONSOLL's
-       light stone and module colours on the right. The page opens in FLOATING's world with
-       KONSOLL's light showing at the right edge; choosing KONSOLL (pointing at it, or swiping to it
-       on a phone) slides the strip across. Only the strip's transform changes, so the gradient is
-       painted once and moved by the compositor. Decorative only. -->
+  <!-- FLOATING's world: black with ember light, settling into the graphite floor. Decorative only. -->
   <div class="backdrop" aria-hidden="true">
     <div class="world" id="world">
       <div class="field"></div>
       <span class="pool ember"></span>
       <span class="pool ember-low"></span>
-      <span class="pool heat"></span>
-      <span class="pool sway"></span>
-      <span class="pool air"></span>
-      <span class="pool grain"></span>
-      <span class="pool ink"></span>
-      <span class="pool stone"></span>
       <div class="grain-noise"></div>
     </div>
     <div class="settle"></div>
@@ -76,27 +62,19 @@
 
   <section class="hero">
     <div class="wrap">
-      <h1>Two instruments, made by&nbsp;ear.</h1>
-      <p class="lede">Audio Unit and VST3 plug-ins, built and tuned by one person. <span class="how-point">Point at an instrument to read about it; open it to go to its own page.</span><span class="how-swipe">Swipe across to the other one; tap a card to open its page.</span></p>
+      <h1>For the take you didn’t&nbsp;record.</h1>
+      <p class="lede">FLOATING keeps the last minute of what you play. Catch the phrase after the fact, shape it into a Memory, print it back. Audio Unit and VST3, by Fløa.</p>
     </div>
   </section>
 
   <!-- ============================================================ CHOOSER -->
   <section id="instruments">
     <div class="wrap">
-      <h2 class="sr-only">Choose an instrument</h2>
-
-      <!-- Phones and touch screens: the instruments sit side by side and swipe; this row names
-           them, shows where you are and scrolls to either one. -->
-      <div class="pager" role="group" aria-label="Instruments">
-        <button type="button" data-go="floating" aria-controls="slide-floating" aria-current="true">Floating</button>
-        <span class="pager-track" aria-hidden="true"><span class="pager-thumb" id="pager-thumb"></span></span>
-        <button type="button" data-go="konsoll" aria-controls="slide-konsoll" aria-current="false">Konsoll</button>
-      </div>
+      <h2 class="sr-only">The instrument</h2>
 
       <div class="chooser" id="chooser">
         <div class="slide floating" id="slide-floating">
-          <a class="instrument floating is-picked" href="/floating-site/" data-pick="floating" aria-describedby="info-floating">
+          <a class="instrument floating" href="/floating-site/" aria-describedby="info-floating">
             <span class="head"><span class="name">FLOATING</span><span class="kind">Memory instrument</span></span>
             <!-- The classic look turns into the cassette once the card is in view: the cassette is fetched
                  after the page has loaded and fades in over the classic. The classic render is moved
@@ -130,7 +108,7 @@
 
           <div class="info floating is-on" id="info-floating">
             <div class="looks-row"><h3>Looks</h3><span data-looks>Classic · Cassette</span></div>
-            <div>
+            <div class="what">
               <h3>What it does</h3>
               <p>FLOATING keeps the last minute of what it hears and turns the moment you choose into a Memory: it holds the phrase while you decide what to do with it. Missed it? Step back through the minute. The original stays untouched.</p>
               <ul class="flow" aria-label="Signal path"><li>Last minute</li><li>Capture</li><li>Memory</li><li>Atmosphere</li><li>Print</li></ul>
@@ -155,51 +133,6 @@
           </div>
         </div>
 
-        <div class="slide konsoll" id="slide-konsoll">
-          <a class="instrument konsoll" href="/konsoll-site/" data-pick="konsoll" aria-describedby="info-konsoll">
-            <span class="head"><img class="wordmark" src="assets/img/konsoll-wordmark.svg" width="128" height="22" alt="KONSOLL"><span class="kind">Multi-FX instrument</span></span>
-            <picture>
-              <source type="image/avif" sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
-                      srcset="assets/img/konsoll-1080.avif 1080w, assets/img/konsoll.avif 1920w, assets/img/konsoll@2x.avif 2560w">
-              <img class="shot"
-                   src="assets/img/konsoll.jpg?v=2"
-                   srcset="assets/img/konsoll-1080.jpg?v=2 1080w, assets/img/konsoll.jpg?v=2 1920w, assets/img/konsoll@2x.jpg?v=2 2560w"
-                   sizes="(max-width: 960px) min(calc(100vw - 76px), 620px), (hover: none) 620px, 540px"
-                   width="1920" height="1209"
-                 alt="The KONSOLL interface playing the Backwards Halo preset: four modules, HEAT, SWAY, AIR and GRAIN, each with a coloured field and two knobs, above the Trace, Hold and Master sections.">
-            </picture>
-            <span class="foot">
-              <span class="status"><span class="dot" style="background: #6fbab5" aria-hidden="true"></span>Beta · v0.9.0 · soon</span>
-              <span class="open">Open KONSOLL <span class="arrow" aria-hidden="true">→</span></span>
-            </span>
-          </a>
-
-          <div class="info konsoll" id="info-konsoll">
-            <div>
-              <h3>What it does</h3>
-              <p>Four effect modules, HEAT, SWAY, AIR and GRAIN, each playing one of five effects, in any order or wiring. Everything can move with the track.</p>
-              <ul class="flow" aria-label="Modules"><li>Heat</li><li>Sway</li><li>Air</li><li>Grain</li></ul>
-            </div>
-            <div>
-              <h3>Highlights</h3>
-              <ul class="points">
-                <li><b>Trace</b>loops your knob movements over 1, 2 or 4 bars</li>
-                <li><b>Hold</b>records a moment of audio and loops it</li>
-                <li><b>Scenes</b>four sounds and a morph between two</li>
-                <li><b>57 presets</b>loudness matched, each with a MACRO</li>
-              </ul>
-            </div>
-            <div>
-              <h3>Status</h3>
-              <dl>
-                <dt>Version</dt><dd>Beta v0.9.0 <span class="state-inline soon">Soon</span></dd>
-                <dt>Formats</dt><dd>Audio Unit · VST3</dd>
-                <dt>Platforms</dt><dd>macOS (Apple Silicon) · Windows later</dd>
-              </dl>
-              <a class="go" href="/konsoll-site/">Open KONSOLL →</a>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -221,11 +154,6 @@
               <td data-label="macOS&#10;Apple Silicon"><a class="state ok" href="/floating-site/#beta">Available</a><span class="sub">AU + VST3 installer · <span data-floating-version>v0.6.0</span></span></td>
               <td data-label="Windows&#10;x64"><a class="state ok" href="/floating-site/#beta">Available</a><span class="sub">VST3 zip · <span data-floating-version>v0.6.0</span></span></td>
             </tr>
-            <tr>
-              <td class="name"><a href="/konsoll-site/"><span class="mark" style="background: var(--konsoll-rule)" aria-hidden="true"></span>KONSOLL</a></td>
-              <td data-label="macOS&#10;Apple Silicon"><span class="state soon">Soon</span><span class="sub">AU + VST3 installer · v0.9.0</span></td>
-              <td data-label="Windows&#10;x64"><span class="state later">Later</span><span class="sub">VST3</span></td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -236,7 +164,7 @@
   <section id="contact">
     <div class="wrap">
       <h2>Support and contact</h2>
-      <div class="text"><p>Both instruments are made by one person. Bug reports, confusion and “this should work differently” are equally welcome; support goes straight into the time this takes.</p></div>
+      <div class="text"><p>FLOATING is made by one person. Bug reports, confusion and “this should work differently” are equally welcome; support goes straight into the time this takes.</p></div>
       <div class="link-rows">
         <div class="link-row"><span class="k">Ko-fi</span><a href="https://ko-fi.com/floamusic" rel="noopener">ko-fi.com/floamusic</a></div>
         <div class="link-row"><span class="k">Boosty</span><a href="https://boosty.to/floamusic/donate" rel="noopener">boosty.to/floamusic</a></div>
@@ -250,90 +178,12 @@
 
 <footer>
   <div class="wrap">
-    <span>Fløa · FLOATING · KONSOLL</span>
+    <span>Fløa · FLOATING</span>
     <span>Fonts: <a href="assets/fonts/OFL-GeistMono.txt">Geist Mono</a> and <a href="assets/fonts/OFL-ShareTechMono.txt">Share Tech Mono</a>, SIL Open Font License</span>
   </div>
 </footer>
 
 <script>
-/* The stage is always in one instrument's world, FLOATING's first. With a pointer, pointing at or
-   focusing a card turns the stage to that world and shows its summary; the choice stays when the
-   pointer leaves. On phones and touch screens the cards swipe sideways and the world follows the
-   swipe continuously: only --p on the strip and the pager thumb changes per frame, read once per
-   animation frame from a passive scroll listener. */
-(function () {
-  var stage = document.getElementById('stage');
-  var world = document.getElementById('world');
-  var thumb = document.getElementById('pager-thumb');
-  var chooser = document.getElementById('chooser');
-  var cards = document.querySelectorAll('[data-pick]');
-  var infos = document.querySelectorAll('.info');
-  var goes = document.querySelectorAll('[data-go]');
-  var swipe = window.matchMedia('(max-width: 960px), (hover: none)');
-  var still = window.matchMedia('(prefers-reduced-motion: reduce)');
-  var current = 'floating';
-
-  function choose(name) {
-    if (name === current) return;
-    current = name;
-    stage.setAttribute('data-world', name);
-    cards.forEach(function (c) { c.classList.toggle('is-picked', c.getAttribute('data-pick') === name); });
-    infos.forEach(function (i) { i.classList.toggle('is-on', i.id === 'info-' + name); });
-    goes.forEach(function (g) { g.setAttribute('aria-current', g.getAttribute('data-go') === name ? 'true' : 'false'); });
-  }
-
-  // Only a pointer that actually moves picks a card. Scrolling slides the cards under a resting
-  // pointer and browsers then report it entering them; acting on that flipped the world mid-scroll
-  // (05.10, recorded in Safari). Such reports carry the pointer's last screen position.
-  var px = null, py = null;
-  function moved(e) { return e.screenX !== px || e.screenY !== py; }
-  document.addEventListener('mousemove', function (e) { px = e.screenX; py = e.screenY; }, { passive: true });
-  cards.forEach(function (c) {
-    function point(e) {
-      if (swipe.matches) return;
-      if (e.type !== 'focus' && !moved(e)) return;
-      choose(c.getAttribute('data-pick'));
-    }
-    c.addEventListener('mouseenter', point);
-    c.addEventListener('mousemove', point, { passive: true });
-    c.addEventListener('focus', point);
-  });
-
-  function travel() { return chooser.scrollWidth - chooser.clientWidth; }
-  var queued = false;
-  function follow() {
-    queued = false;
-    if (!swipe.matches) return;
-    var max = travel();
-    var p = max > 0 ? Math.min(1, Math.max(0, chooser.scrollLeft / max)) : 0;
-    world.style.setProperty('--p', p.toFixed(4));
-    thumb.style.setProperty('--p', p.toFixed(4));
-    choose(p > .5 ? 'konsoll' : 'floating');
-  }
-  chooser.addEventListener('scroll', function () {
-    if (!queued) { queued = true; requestAnimationFrame(follow); }
-  }, { passive: true });
-
-  goes.forEach(function (g) {
-    g.addEventListener('click', function () {
-      chooser.scrollTo({ left: g.getAttribute('data-go') === 'konsoll' ? travel() : 0, behavior: still.matches ? 'auto' : 'smooth' });
-    });
-  });
-
-  // Crossing between the swipe layout and the pointer layout keeps the chosen instrument.
-  function layout() {
-    if (swipe.matches) {
-      chooser.scrollLeft = current === 'konsoll' ? travel() : 0;
-      follow();
-    } else {
-      world.style.removeProperty('--p');
-      thumb.style.removeProperty('--p');
-    }
-  }
-  if (swipe.addEventListener) swipe.addEventListener('change', layout); else swipe.addListener(layout);
-  window.addEventListener('resize', function () { if (!queued && swipe.matches) { queued = true; requestAnimationFrame(follow); } }, { passive: true });
-  if (swipe.matches) follow();
-})();
 /* FLOATING's card opens on the classic look and turns into the cassette. Nothing of the cassette is
    fetched before the page has finished loading; the turn waits until its picture is decoded and the
    card has been in view for four seconds, long enough to take in the classic first. "Looks" in the
