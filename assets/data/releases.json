@@ -1,5 +1,24 @@
 [
  {
+  "id": 1115945962,
+  "title": "Dream State",
+  "slug": "dream-state",
+  "with": [
+   "køhvt"
+  ],
+  "date": "2026-11-20",
+  "label": "Dawning Records",
+  "upc": "4065328968711",
+  "type": "Single",
+  "links": {
+   "deezer": "https://www.deezer.com/album/1115945962",
+   "apple": "https://music.apple.com/us/album/dream-state-single/6820099693",
+   "spotify": ""
+  },
+  "light": "#d89064",
+  "deep": "#3b2416"
+ },
+ {
   "id": 1072543222,
   "title": "What Remains",
   "links": {
